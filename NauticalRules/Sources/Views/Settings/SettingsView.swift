@@ -64,8 +64,6 @@ struct SettingsView: View {
             }
         } header: {
             Text("Data")
-        } footer: {
-            Text("Resetting progress will remove quiz history and statistics. Bookmarks will be kept.")
         }
     }
     

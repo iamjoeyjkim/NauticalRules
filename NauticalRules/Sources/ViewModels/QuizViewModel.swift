@@ -175,9 +175,29 @@ class QuizViewModel: ObservableObject {
         
         selectedAnswer = answer
         
-        // In immediate feedback modes, lock the answer
+        // Always save the answer to the session immediately
+        if currentQuestion != nil {
+            session?.submitAnswer(answer)
+        }
+        
+        // In immediate feedback modes, lock the answer and show feedback
         if showsImmediateFeedback {
-            submitAnswer()
+            isAnswerLocked = true
+            
+            // Record for progress tracking (only in immediate feedback mode)
+            if let question = currentQuestion {
+                let isCorrect = question.isCorrect(answer)
+                progressService.recordAnswer(
+                    questionId: question.id,
+                    category: question.category,
+                    isCorrect: isCorrect
+                )
+            }
+            
+            // Show explanation
+            withAnimation(AppTheme.Animation.smooth) {
+                showingExplanation = true
+            }
         }
     }
     
@@ -187,13 +207,17 @@ class QuizViewModel: ObservableObject {
         isAnswerLocked = true
         session?.submitAnswer(answer)
         
-        // Record the answer
-        let isCorrect = question.isCorrect(answer)
-        progressService.recordAnswer(
-            questionId: question.id,
-            category: question.category,
-            isCorrect: isCorrect
-        )
+        // Record the answer for progress (only if not already done in selectAnswer)
+        if !showsImmediateFeedback {
+            // In quiz mode, we defer recording until quiz completion
+        } else {
+            let isCorrect = question.isCorrect(answer)
+            progressService.recordAnswer(
+                questionId: question.id,
+                category: question.category,
+                isCorrect: isCorrect
+            )
+        }
         
         // Show explanation in immediate feedback modes
         if showsImmediateFeedback {
@@ -205,18 +229,10 @@ class QuizViewModel: ObservableObject {
     
     /// Records the answer without showing visual feedback (for test mode)
     func recordAnswerSilently() {
-        guard let answer = selectedAnswer, let question = currentQuestion else { return }
+        guard let answer = selectedAnswer, currentQuestion != nil else { return }
         
         // Submit to session without locking UI
         session?.submitAnswer(answer)
-        
-        // Record for progress tracking
-        let isCorrect = question.isCorrect(answer)
-        progressService.recordAnswer(
-            questionId: question.id,
-            category: question.category,
-            isCorrect: isCorrect
-        )
     }
     
     // MARK: - Navigation
@@ -224,16 +240,18 @@ class QuizViewModel: ObservableObject {
     func moveToNext() {
         guard session != nil else { return }
         
-        // If in exam mode and no answer selected, mark as skipped
-        if !showsImmediateFeedback && selectedAnswer == nil {
-            // Could track skipped questions here
-        }
-        
         session?.moveToNext()
         
-        // Reset state for next question
-        selectedAnswer = nil
-        isAnswerLocked = false
+        // Load any existing answer for the new question
+        if let question = currentQuestion {
+            selectedAnswer = session?.getAnswer(for: question)
+        } else {
+            selectedAnswer = nil
+        }
+        
+        // In quiz mode, don't lock - allow changing answers
+        // In immediate feedback mode, lock if already answered
+        isAnswerLocked = showsImmediateFeedback && selectedAnswer != nil
         showingExplanation = false
         
         // Check if quiz is complete
@@ -251,7 +269,8 @@ class QuizViewModel: ObservableObject {
         if let question = currentQuestion {
             selectedAnswer = session?.getAnswer(for: question)
         }
-        isAnswerLocked = selectedAnswer != nil
+        // Only lock answer in immediate feedback mode
+        isAnswerLocked = showsImmediateFeedback && selectedAnswer != nil
         showingExplanation = false
     }
     
@@ -263,7 +282,8 @@ class QuizViewModel: ObservableObject {
         if let question = currentQuestion {
             selectedAnswer = session?.getAnswer(for: question)
         }
-        isAnswerLocked = selectedAnswer != nil
+        // Only lock answer in immediate feedback mode
+        isAnswerLocked = showsImmediateFeedback && selectedAnswer != nil
         showingExplanation = false
     }
     
@@ -296,6 +316,15 @@ class QuizViewModel: ObservableObject {
     // MARK: - Helpers
     
     func getAnswerState(for answer: CorrectAnswer) -> AnswerState {
+        // In quiz/exam mode without immediate feedback, only show if answer is selected
+        // Don't show correct/incorrect until results are shown
+        if !showsImmediateFeedback && !showingResults {
+            if selectedAnswer == answer {
+                return .selected
+            }
+            return .normal
+        }
+        
         guard isAnswerLocked, let question = currentQuestion else {
             if selectedAnswer == answer {
                 return .selected

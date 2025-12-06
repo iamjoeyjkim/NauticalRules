@@ -13,7 +13,7 @@ struct UserProgress: Codable {
     var questionsAnswered: Int
     var correctAnswers: Int
     var categoryStats: [String: CategoryStats]
-    var bookmarkedQuestions: Set<Int>
+    var bookmarkedQuestions: [Int]  // Ordered array: most recently added at the end
     var incorrectQuestions: Set<Int>
     var lastSessionDate: Date?
     var streakDays: Int
@@ -80,10 +80,10 @@ struct UserProgress: Codable {
     }
     
     mutating func toggleBookmark(questionId: Int) {
-        if bookmarkedQuestions.contains(questionId) {
-            bookmarkedQuestions.remove(questionId)
+        if let index = bookmarkedQuestions.firstIndex(of: questionId) {
+            bookmarkedQuestions.remove(at: index)
         } else {
-            bookmarkedQuestions.insert(questionId)
+            bookmarkedQuestions.append(questionId)  // Add to end (most recent)
         }
     }
     

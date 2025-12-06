@@ -42,6 +42,7 @@ struct ContentView: View {
                 .tag(Tab.settings)
         }
         .tint(AppTheme.Colors.primaryNavy)
+        .preferredColorScheme(.light)
     }
 }
 

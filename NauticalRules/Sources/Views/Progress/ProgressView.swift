@@ -157,7 +157,9 @@ struct ProgressView: View {
                     message: "Bookmark questions during practice to review them here"
                 )
             } else {
-                let bookmarkedQuestions = questionService.getQuestions(ids: progressService.bookmarkedIds)
+                // Get bookmarks in reverse chronological order (most recent first)
+                let orderedIds = progressService.bookmarkedIds.reversed()
+                let bookmarkedQuestions = questionService.getQuestionsInOrder(ids: Array(orderedIds))
                 ForEach(bookmarkedQuestions) { question in
                     Button {
                         selectedBookmark = question
@@ -379,12 +381,8 @@ struct BookmarkedQuestionDetailView: View {
                             .fixedSize(horizontal: false, vertical: true)
                         
                         // Diagram if available
-                        if question.hasDiagram, let diagramName = question.diagramName {
-                            Image(diagramName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 200)
-                                .clipShape(RoundedRectangle(cornerRadius: AppTheme.Radius.md))
+                        if question.hasDiagram {
+                            DiagramView(diagramName: question.diagramName)
                         }
                     }
                     .padding(AppTheme.Spacing.xl)

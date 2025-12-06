@@ -78,6 +78,20 @@ class ProgressService: ObservableObject {
     }
     
     func recordQuizCompletion(session: QuizSession) {
+        // For quiz/exam modes without immediate feedback, record individual answers now
+        if !session.mode.showsImmediateFeedback {
+            for question in session.questions {
+                if let answer = session.answers[question.id] {
+                    let isCorrect = question.isCorrect(answer)
+                    progress.recordAnswer(
+                        questionId: question.id,
+                        category: question.category,
+                        isCorrect: isCorrect
+                    )
+                }
+            }
+        }
+        
         progress.recordQuizCompletion(
             mode: session.mode.displayName,
             score: session.score,
@@ -102,8 +116,14 @@ class ProgressService: ObservableObject {
         progress.bookmarkedQuestions.contains(questionId)
     }
     
-    var bookmarkedIds: Set<Int> {
+    /// Ordered array of bookmarked IDs - most recently added last
+    var bookmarkedIds: [Int] {
         progress.bookmarkedQuestions
+    }
+    
+    /// Set version for quick lookups
+    var bookmarkedIdsSet: Set<Int> {
+        Set(progress.bookmarkedQuestions)
     }
     
     var bookmarkCount: Int {

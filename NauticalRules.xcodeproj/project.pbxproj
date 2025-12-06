@@ -26,14 +26,14 @@
 		017 /* ExplanationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117 /* ExplanationCard.swift */; };
 		018 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118 /* DiagramView.swift */; };
 		019 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119 /* ResultsView.swift */; };
-		025 /* ReviewAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* ReviewAnswersView.swift */; };
 		020 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120 /* ProgressView.swift */; };
-		026 /* HistoryResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* HistoryResultsView.swift */; };
 		021 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121 /* SettingsView.swift */; };
-		024 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* PracticeView.swift */; };
-		027 /* PracticeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* PracticeSessionView.swift */; };
 		022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122 /* Assets.xcassets */; };
 		023 /* Nautical Rules Test Bank.csv in Resources */ = {isa = PBXBuildFile; fileRef = 123 /* Nautical Rules Test Bank.csv */; };
+		024 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* PracticeView.swift */; };
+		025 /* ReviewAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* ReviewAnswersView.swift */; };
+		026 /* HistoryResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* HistoryResultsView.swift */; };
+		027 /* PracticeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* PracticeSessionView.swift */; };
 		028 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128 /* PDFGenerator.swift */; };
 		B235BB122EE2AAA800FFABD9 /* diagram_74.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB042EE2AAA800FFABD9 /* diagram_74.svg */; };
 		B235BB132EE2AAA800FFABD9 /* diagram_67.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFD2EE2AAA800FFABD9 /* diagram_67.svg */; };
@@ -403,15 +403,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		20 /* Practice */ = {
-			isa = PBXGroup;
-			children = (
-				124 /* PracticeView.swift */,
-				127 /* PracticeSessionView.swift */,
-			);
-			path = Practice;
-			sourceTree = "<group>";
-		};
 		18 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +419,15 @@
 				118 /* DiagramView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		20 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				124 /* PracticeView.swift */,
+				127 /* PracticeSessionView.swift */,
+			);
+			path = Practice;
 			sourceTree = "<group>";
 		};
 		B235BB112EE2AAA800FFABD9 /* Diagrams */ = {
@@ -839,6 +839,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 2FUP7889J8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Nautical Rules";
@@ -871,6 +872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 2FUP7889J8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Nautical Rules";

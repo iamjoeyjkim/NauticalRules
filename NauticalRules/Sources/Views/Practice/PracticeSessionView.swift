@@ -98,7 +98,8 @@ struct PracticeSessionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Exit") {
-                        showingExitConfirmation = true
+                        savePracticePosition()
+                        onDismiss()
                     }
                     .foregroundColor(AppTheme.Colors.incorrect)
                 }
@@ -241,17 +242,18 @@ struct PracticeSessionView: View {
     // MARK: - Bottom Navigation
     
     private var bottomNavigation: some View {
-        HStack(spacing: AppTheme.Spacing.md) {
+        HStack(spacing: AppTheme.Spacing.lg) {
             // Previous Button
             Button {
                 moveToPrevious()
             } label: {
-                Image(systemName: "chevron.left")
-                    .font(.title3)
-                    .frame(width: 44, height: 44)
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Previous")
+                }
             }
             .disabled(!canGoBack)
-            .foregroundColor(canGoBack ? AppTheme.Colors.primaryNavy : AppTheme.Colors.textTertiary)
+            .opacity(canGoBack ? 1 : 0.5)
             
             Spacer()
             
@@ -265,25 +267,13 @@ struct PracticeSessionView: View {
                     Text(nextButtonTitle)
                     Image(systemName: "chevron.right")
                 }
-                .font(AppTheme.Typography.headline)
-                .foregroundColor(.white)
-                .padding(.horizontal, AppTheme.Spacing.xxl)
-                .padding(.vertical, AppTheme.Spacing.md)
-                .background(
-                    Capsule()
-                        .fill(isAnswerLocked ? AppTheme.Colors.primaryGradient : LinearGradient(colors: [AppTheme.Colors.textTertiary], startPoint: .leading, endPoint: .trailing))
-                )
             }
             .disabled(!isAnswerLocked)
-            
-            Spacer()
-            
-            // Placeholder for symmetry
-            Color.clear
-                .frame(width: 44, height: 44)
+            .opacity(isAnswerLocked ? 1 : 0.5)
         }
-        .padding(.horizontal, AppTheme.Spacing.lg)
-        .padding(.vertical, AppTheme.Spacing.md)
+        .font(AppTheme.Typography.bodyMedium)
+        .foregroundColor(AppTheme.Colors.oceanBlue)
+        .padding(AppTheme.Spacing.lg)
         .background(AppTheme.Colors.cardBackground)
     }
     

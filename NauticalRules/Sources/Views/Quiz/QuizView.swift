@@ -165,7 +165,7 @@ struct QuizView: View {
                 
                 Spacer()
                 
-                if viewModel.correctCount + viewModel.incorrectCount > 0 {
+                if viewModel.showsImmediateFeedback && viewModel.correctCount + viewModel.incorrectCount > 0 {
                     HStack(spacing: AppTheme.Spacing.sm) {
                         HStack(spacing: 2) {
                             Image(systemName: "checkmark.circle.fill")
@@ -269,17 +269,18 @@ struct QuizView: View {
     // MARK: - Bottom Navigation
     
     private var bottomNavigation: some View {
-        HStack(spacing: AppTheme.Spacing.md) {
+        HStack(spacing: AppTheme.Spacing.lg) {
             // Previous Button
             Button {
                 viewModel.moveToPrevious()
             } label: {
-                Image(systemName: "chevron.left")
-                    .font(.title3)
-                    .frame(width: 44, height: 44)
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Previous")
+                }
             }
             .disabled(!viewModel.canGoBack)
-            .foregroundColor(viewModel.canGoBack ? AppTheme.Colors.primaryNavy : AppTheme.Colors.textTertiary)
+            .opacity(viewModel.canGoBack ? 1 : 0.5)
             
             Spacer()
             
@@ -297,10 +298,7 @@ struct QuizView: View {
                         }
                     }
                 } else {
-                    // Non-immediate feedback mode (Test): Record answer silently and move on
-                    if viewModel.selectedAnswer != nil {
-                        viewModel.recordAnswerSilently()
-                    }
+                    // Non-immediate feedback mode (Test): Move on
                     if viewModel.isLastQuestion {
                         viewModel.finishQuiz()
                     } else {
@@ -310,35 +308,18 @@ struct QuizView: View {
             } label: {
                 HStack {
                     Text(nextButtonTitle)
-                    if !viewModel.isLastQuestion || !viewModel.isAnswerLocked {
+                    if nextButtonTitle != "Submit" {
                         Image(systemName: "chevron.right")
                     }
                 }
-                .font(AppTheme.Typography.headline)
-                .foregroundColor(.white)
-                .padding(.horizontal, AppTheme.Spacing.xxl)
-                .padding(.vertical, AppTheme.Spacing.md)
-                .background(
-                    Capsule()
-                        .fill(AppTheme.Colors.primaryGradient)
-                )
             }
             .disabled(viewModel.selectedAnswer == nil && viewModel.showsImmediateFeedback)
-            .opacity((viewModel.selectedAnswer == nil && viewModel.showsImmediateFeedback) ? 0.6 : 1)
-            
-            Spacer()
-            
-            // Placeholder for symmetry
-            Color.clear
-                .frame(width: 44, height: 44)
+            .opacity((viewModel.selectedAnswer == nil && viewModel.showsImmediateFeedback) ? 0.5 : 1)
         }
-        .padding(.horizontal, AppTheme.Spacing.xl)
-        .padding(.vertical, AppTheme.Spacing.lg)
-        .background(
-            Rectangle()
-                .fill(AppTheme.Colors.cardBackground)
-                .shadow(color: AppTheme.Shadows.md.color.opacity(0.5), radius: 8, x: 0, y: -4)
-        )
+        .font(AppTheme.Typography.bodyMedium)
+        .foregroundColor(AppTheme.Colors.oceanBlue)
+        .padding(AppTheme.Spacing.lg)
+        .background(AppTheme.Colors.cardBackground)
     }
     
     private var nextButtonTitle: String {

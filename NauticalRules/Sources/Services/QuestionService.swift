@@ -122,6 +122,12 @@ class QuestionService: ObservableObject {
         allQuestions.filter { ids.contains($0.id) }
     }
     
+    /// Get questions in the specific order of the IDs provided
+    func getQuestionsInOrder(ids: [Int]) -> [Question] {
+        let questionMap = Dictionary(uniqueKeysWithValues: allQuestions.map { ($0.id, $0) })
+        return ids.compactMap { questionMap[$0] }
+    }
+    
     func questions(withIds ids: Set<Int>) -> [Question] {
         allQuestions.filter { ids.contains($0.id) }
     }
