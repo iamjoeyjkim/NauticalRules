@@ -1,0 +1,922 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		001 /* NauticalRulesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* NauticalRulesApp.swift */; };
+		002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* ContentView.swift */; };
+		003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103 /* Theme.swift */; };
+		004 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* Question.swift */; };
+		005 /* QuizSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105 /* QuizSession.swift */; };
+		006 /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106 /* UserProgress.swift */; };
+		007 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107 /* CSVParser.swift */; };
+		008 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108 /* QuestionService.swift */; };
+		009 /* ProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109 /* ProgressService.swift */; };
+		010 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110 /* HomeViewModel.swift */; };
+		011 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111 /* QuizViewModel.swift */; };
+		012 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112 /* ProgressViewModel.swift */; };
+		013 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113 /* HomeView.swift */; };
+		014 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114 /* ProgressRingView.swift */; };
+		015 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115 /* QuizView.swift */; };
+		016 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116 /* AnswerButton.swift */; };
+		017 /* ExplanationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117 /* ExplanationCard.swift */; };
+		018 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118 /* DiagramView.swift */; };
+		019 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119 /* ResultsView.swift */; };
+		025 /* ReviewAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* ReviewAnswersView.swift */; };
+		020 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120 /* ProgressView.swift */; };
+		026 /* HistoryResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* HistoryResultsView.swift */; };
+		021 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121 /* SettingsView.swift */; };
+		024 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* PracticeView.swift */; };
+		027 /* PracticeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* PracticeSessionView.swift */; };
+		022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122 /* Assets.xcassets */; };
+		023 /* Nautical Rules Test Bank.csv in Resources */ = {isa = PBXBuildFile; fileRef = 123 /* Nautical Rules Test Bank.csv */; };
+		028 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128 /* PDFGenerator.swift */; };
+		B235BB122EE2AAA800FFABD9 /* diagram_74.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB042EE2AAA800FFABD9 /* diagram_74.svg */; };
+		B235BB132EE2AAA800FFABD9 /* diagram_67.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFD2EE2AAA800FFABD9 /* diagram_67.svg */; };
+		B235BB142EE2AAA800FFABD9 /* diagram_39.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE12EE2AAA800FFABD9 /* diagram_39.svg */; };
+		B235BB152EE2AAA800FFABD9 /* diagram_70.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB002EE2AAA800FFABD9 /* diagram_70.svg */; };
+		B235BB162EE2AAA800FFABD9 /* diagram_66.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFC2EE2AAA800FFABD9 /* diagram_66.svg */; };
+		B235BB172EE2AAA800FFABD9 /* diagram_06.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC02EE2AAA800FFABD9 /* diagram_06.svg */; };
+		B235BB182EE2AAA800FFABD9 /* diagram_82.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0C2EE2AAA800FFABD9 /* diagram_82.svg */; };
+		B235BB192EE2AAA800FFABD9 /* diagram_68.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFE2EE2AAA800FFABD9 /* diagram_68.svg */; };
+		B235BB1A2EE2AAA800FFABD9 /* diagram_31.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD92EE2AAA800FFABD9 /* diagram_31.svg */; };
+		B235BB1B2EE2AAA800FFABD9 /* diagram_12.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC62EE2AAA800FFABD9 /* diagram_12.svg */; };
+		B235BB1C2EE2AAA800FFABD9 /* diagram_73.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB032EE2AAA800FFABD9 /* diagram_73.svg */; };
+		B235BB1D2EE2AAA800FFABD9 /* diagram_13.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC72EE2AAA800FFABD9 /* diagram_13.svg */; };
+		B235BB1E2EE2AAA800FFABD9 /* diagram_22.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD02EE2AAA800FFABD9 /* diagram_22.svg */; };
+		B235BB1F2EE2AAA800FFABD9 /* diagram_77.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB072EE2AAA800FFABD9 /* diagram_77.svg */; };
+		B235BB202EE2AAA800FFABD9 /* diagram_11.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC52EE2AAA800FFABD9 /* diagram_11.svg */; };
+		B235BB212EE2AAA800FFABD9 /* diagram_85.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0F2EE2AAA800FFABD9 /* diagram_85.svg */; };
+		B235BB222EE2AAA800FFABD9 /* diagram_61.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF72EE2AAA800FFABD9 /* diagram_61.svg */; };
+		B235BB232EE2AAA800FFABD9 /* diagram_32.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADA2EE2AAA800FFABD9 /* diagram_32.svg */; };
+		B235BB242EE2AAA800FFABD9 /* diagram_34.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADC2EE2AAA800FFABD9 /* diagram_34.svg */; };
+		B235BB252EE2AAA800FFABD9 /* diagram_03.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BABD2EE2AAA800FFABD9 /* diagram_03.svg */; };
+		B235BB262EE2AAA800FFABD9 /* diagram_29.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD72EE2AAA800FFABD9 /* diagram_29.svg */; };
+		B235BB272EE2AAA800FFABD9 /* diagram_44.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE62EE2AAA800FFABD9 /* diagram_44.svg */; };
+		B235BB282EE2AAA800FFABD9 /* diagram_28.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD62EE2AAA800FFABD9 /* diagram_28.svg */; };
+		B235BB292EE2AAA800FFABD9 /* diagram_71.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB012EE2AAA800FFABD9 /* diagram_71.svg */; };
+		B235BB2A2EE2AAA800FFABD9 /* diagram_08.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC22EE2AAA800FFABD9 /* diagram_08.svg */; };
+		B235BB2B2EE2AAA800FFABD9 /* diagram_75.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB052EE2AAA800FFABD9 /* diagram_75.svg */; };
+		B235BB2C2EE2AAA800FFABD9 /* diagram_10.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC42EE2AAA800FFABD9 /* diagram_10.svg */; };
+		B235BB2D2EE2AAA800FFABD9 /* diagram_86.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB102EE2AAA800FFABD9 /* diagram_86.svg */; };
+		B235BB2E2EE2AAA800FFABD9 /* diagram_53.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAEF2EE2AAA800FFABD9 /* diagram_53.svg */; };
+		B235BB2F2EE2AAA800FFABD9 /* diagram_05.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BABF2EE2AAA800FFABD9 /* diagram_05.svg */; };
+		B235BB302EE2AAA800FFABD9 /* diagram_50.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAEC2EE2AAA800FFABD9 /* diagram_50.svg */; };
+		B235BB312EE2AAA800FFABD9 /* diagram_76.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB062EE2AAA800FFABD9 /* diagram_76.svg */; };
+		B235BB322EE2AAA800FFABD9 /* diagram_40.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE22EE2AAA800FFABD9 /* diagram_40.svg */; };
+		B235BB332EE2AAA800FFABD9 /* diagram_62.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF82EE2AAA800FFABD9 /* diagram_62.svg */; };
+		B235BB342EE2AAA800FFABD9 /* diagram_07.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC12EE2AAA800FFABD9 /* diagram_07.svg */; };
+		B235BB352EE2AAA800FFABD9 /* diagram_51.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAED2EE2AAA800FFABD9 /* diagram_51.svg */; };
+		B235BB362EE2AAA800FFABD9 /* diagram_35.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADD2EE2AAA800FFABD9 /* diagram_35.svg */; };
+		B235BB372EE2AAA800FFABD9 /* diagram_14.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC82EE2AAA800FFABD9 /* diagram_14.svg */; };
+		B235BB382EE2AAA800FFABD9 /* diagram_49.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAEB2EE2AAA800FFABD9 /* diagram_49.svg */; };
+		B235BB392EE2AAA800FFABD9 /* diagram_20.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACE2EE2AAA800FFABD9 /* diagram_20.svg */; };
+		B235BB3A2EE2AAA800FFABD9 /* diagram_47.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE92EE2AAA800FFABD9 /* diagram_47.svg */; };
+		B235BB3B2EE2AAA800FFABD9 /* diagram_56.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF22EE2AAA800FFABD9 /* diagram_56.svg */; };
+		B235BB3C2EE2AAA800FFABD9 /* diagram_26.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD42EE2AAA800FFABD9 /* diagram_26.svg */; };
+		B235BB3D2EE2AAA800FFABD9 /* diagram_27.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD52EE2AAA800FFABD9 /* diagram_27.svg */; };
+		B235BB3E2EE2AAA800FFABD9 /* diagram_72.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB022EE2AAA800FFABD9 /* diagram_72.svg */; };
+		B235BB3F2EE2AAA800FFABD9 /* diagram_54.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF02EE2AAA800FFABD9 /* diagram_54.svg */; };
+		B235BB402EE2AAA800FFABD9 /* diagram_09.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC32EE2AAA800FFABD9 /* diagram_09.svg */; };
+		B235BB412EE2AAA800FFABD9 /* diagram_59.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF52EE2AAA800FFABD9 /* diagram_59.svg */; };
+		B235BB422EE2AAA800FFABD9 /* diagram_79.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB092EE2AAA800FFABD9 /* diagram_79.svg */; };
+		B235BB432EE2AAA800FFABD9 /* diagram_37.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADF2EE2AAA800FFABD9 /* diagram_37.svg */; };
+		B235BB442EE2AAA800FFABD9 /* diagram_04.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BABE2EE2AAA800FFABD9 /* diagram_04.svg */; };
+		B235BB452EE2AAA800FFABD9 /* diagram_24.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD22EE2AAA800FFABD9 /* diagram_24.svg */; };
+		B235BB462EE2AAA800FFABD9 /* diagram_25.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD32EE2AAA800FFABD9 /* diagram_25.svg */; };
+		B235BB472EE2AAA800FFABD9 /* diagram_48.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAEA2EE2AAA800FFABD9 /* diagram_48.svg */; };
+		B235BB482EE2AAA800FFABD9 /* diagram_36.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADE2EE2AAA800FFABD9 /* diagram_36.svg */; };
+		B235BB492EE2AAA800FFABD9 /* diagram_17.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACB2EE2AAA800FFABD9 /* diagram_17.svg */; };
+		B235BB4A2EE2AAA800FFABD9 /* diagram_41.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE32EE2AAA800FFABD9 /* diagram_41.svg */; };
+		B235BB4B2EE2AAA800FFABD9 /* diagram_42.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE42EE2AAA800FFABD9 /* diagram_42.svg */; };
+		B235BB4C2EE2AAA800FFABD9 /* diagram_46.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE82EE2AAA800FFABD9 /* diagram_46.svg */; };
+		B235BB4D2EE2AAA800FFABD9 /* diagram_80.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0A2EE2AAA800FFABD9 /* diagram_80.svg */; };
+		B235BB4E2EE2AAA800FFABD9 /* diagram_23.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD12EE2AAA800FFABD9 /* diagram_23.svg */; };
+		B235BB4F2EE2AAA800FFABD9 /* diagram_69.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFF2EE2AAA800FFABD9 /* diagram_69.svg */; };
+		B235BB502EE2AAA800FFABD9 /* diagram_02.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BABC2EE2AAA800FFABD9 /* diagram_02.svg */; };
+		B235BB512EE2AAA800FFABD9 /* diagram_81.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0B2EE2AAA800FFABD9 /* diagram_81.svg */; };
+		B235BB522EE2AAA800FFABD9 /* diagram_84.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0E2EE2AAA800FFABD9 /* diagram_84.svg */; };
+		B235BB532EE2AAA800FFABD9 /* diagram_16.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACA2EE2AAA800FFABD9 /* diagram_16.svg */; };
+		B235BB542EE2AAA800FFABD9 /* diagram_33.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BADB2EE2AAA800FFABD9 /* diagram_33.svg */; };
+		B235BB552EE2AAA800FFABD9 /* diagram_52.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAEE2EE2AAA800FFABD9 /* diagram_52.svg */; };
+		B235BB562EE2AAA800FFABD9 /* diagram_57.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF32EE2AAA800FFABD9 /* diagram_57.svg */; };
+		B235BB572EE2AAA800FFABD9 /* diagram_30.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAD82EE2AAA800FFABD9 /* diagram_30.svg */; };
+		B235BB582EE2AAA800FFABD9 /* diagram_63.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF92EE2AAA800FFABD9 /* diagram_63.svg */; };
+		B235BB592EE2AAA800FFABD9 /* diagram_64.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFA2EE2AAA800FFABD9 /* diagram_64.svg */; };
+		B235BB5A2EE2AAA800FFABD9 /* diagram_65.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAFB2EE2AAA800FFABD9 /* diagram_65.svg */; };
+		B235BB5B2EE2AAA800FFABD9 /* diagram_60.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF62EE2AAA800FFABD9 /* diagram_60.svg */; };
+		B235BB5C2EE2AAA800FFABD9 /* diagram_38.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE02EE2AAA800FFABD9 /* diagram_38.svg */; };
+		B235BB5D2EE2AAA800FFABD9 /* diagram_19.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACD2EE2AAA800FFABD9 /* diagram_19.svg */; };
+		B235BB5E2EE2AAA800FFABD9 /* diagram_83.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB0D2EE2AAA800FFABD9 /* diagram_83.svg */; };
+		B235BB5F2EE2AAA800FFABD9 /* diagram_15.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAC92EE2AAA800FFABD9 /* diagram_15.svg */; };
+		B235BB602EE2AAA800FFABD9 /* diagram_21.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACF2EE2AAA800FFABD9 /* diagram_21.svg */; };
+		B235BB612EE2AAA800FFABD9 /* diagram_58.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF42EE2AAA800FFABD9 /* diagram_58.svg */; };
+		B235BB622EE2AAA800FFABD9 /* diagram_78.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BB082EE2AAA800FFABD9 /* diagram_78.svg */; };
+		B235BB632EE2AAA800FFABD9 /* diagram_18.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BACC2EE2AAA800FFABD9 /* diagram_18.svg */; };
+		B235BB642EE2AAA800FFABD9 /* diagram_43.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE52EE2AAA800FFABD9 /* diagram_43.svg */; };
+		B235BB652EE2AAA800FFABD9 /* diagram_45.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAE72EE2AAA800FFABD9 /* diagram_45.svg */; };
+		B235BB662EE2AAA800FFABD9 /* diagram_01.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BABB2EE2AAA800FFABD9 /* diagram_01.svg */; };
+		B235BB672EE2AAA800FFABD9 /* diagram_55.svg in Resources */ = {isa = PBXBuildFile; fileRef = B235BAF12EE2AAA800FFABD9 /* diagram_55.svg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		100 /* NauticalRules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NauticalRules.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		101 /* NauticalRulesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NauticalRulesApp.swift; sourceTree = "<group>"; };
+		102 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		103 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		104 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		105 /* QuizSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSession.swift; sourceTree = "<group>"; };
+		106 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
+		107 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		108 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		109 /* ProgressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressService.swift; sourceTree = "<group>"; };
+		110 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		111 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		112 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		113 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		114 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
+		115 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		116 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
+		117 /* ExplanationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationCard.swift; sourceTree = "<group>"; };
+		118 /* DiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
+		119 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		120 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		121 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		123 /* Nautical Rules Test Bank.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Nautical Rules Test Bank.csv"; sourceTree = "<group>"; };
+		124 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		125 /* ReviewAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAnswersView.swift; sourceTree = "<group>"; };
+		126 /* HistoryResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResultsView.swift; sourceTree = "<group>"; };
+		127 /* PracticeSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSessionView.swift; sourceTree = "<group>"; };
+		128 /* PDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
+		B235BABB2EE2AAA800FFABD9 /* diagram_01.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_01.svg; sourceTree = "<group>"; };
+		B235BABC2EE2AAA800FFABD9 /* diagram_02.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_02.svg; sourceTree = "<group>"; };
+		B235BABD2EE2AAA800FFABD9 /* diagram_03.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_03.svg; sourceTree = "<group>"; };
+		B235BABE2EE2AAA800FFABD9 /* diagram_04.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_04.svg; sourceTree = "<group>"; };
+		B235BABF2EE2AAA800FFABD9 /* diagram_05.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_05.svg; sourceTree = "<group>"; };
+		B235BAC02EE2AAA800FFABD9 /* diagram_06.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_06.svg; sourceTree = "<group>"; };
+		B235BAC12EE2AAA800FFABD9 /* diagram_07.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_07.svg; sourceTree = "<group>"; };
+		B235BAC22EE2AAA800FFABD9 /* diagram_08.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_08.svg; sourceTree = "<group>"; };
+		B235BAC32EE2AAA800FFABD9 /* diagram_09.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_09.svg; sourceTree = "<group>"; };
+		B235BAC42EE2AAA800FFABD9 /* diagram_10.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_10.svg; sourceTree = "<group>"; };
+		B235BAC52EE2AAA800FFABD9 /* diagram_11.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_11.svg; sourceTree = "<group>"; };
+		B235BAC62EE2AAA800FFABD9 /* diagram_12.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_12.svg; sourceTree = "<group>"; };
+		B235BAC72EE2AAA800FFABD9 /* diagram_13.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_13.svg; sourceTree = "<group>"; };
+		B235BAC82EE2AAA800FFABD9 /* diagram_14.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_14.svg; sourceTree = "<group>"; };
+		B235BAC92EE2AAA800FFABD9 /* diagram_15.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_15.svg; sourceTree = "<group>"; };
+		B235BACA2EE2AAA800FFABD9 /* diagram_16.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_16.svg; sourceTree = "<group>"; };
+		B235BACB2EE2AAA800FFABD9 /* diagram_17.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_17.svg; sourceTree = "<group>"; };
+		B235BACC2EE2AAA800FFABD9 /* diagram_18.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_18.svg; sourceTree = "<group>"; };
+		B235BACD2EE2AAA800FFABD9 /* diagram_19.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_19.svg; sourceTree = "<group>"; };
+		B235BACE2EE2AAA800FFABD9 /* diagram_20.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_20.svg; sourceTree = "<group>"; };
+		B235BACF2EE2AAA800FFABD9 /* diagram_21.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_21.svg; sourceTree = "<group>"; };
+		B235BAD02EE2AAA800FFABD9 /* diagram_22.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_22.svg; sourceTree = "<group>"; };
+		B235BAD12EE2AAA800FFABD9 /* diagram_23.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_23.svg; sourceTree = "<group>"; };
+		B235BAD22EE2AAA800FFABD9 /* diagram_24.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_24.svg; sourceTree = "<group>"; };
+		B235BAD32EE2AAA800FFABD9 /* diagram_25.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_25.svg; sourceTree = "<group>"; };
+		B235BAD42EE2AAA800FFABD9 /* diagram_26.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_26.svg; sourceTree = "<group>"; };
+		B235BAD52EE2AAA800FFABD9 /* diagram_27.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_27.svg; sourceTree = "<group>"; };
+		B235BAD62EE2AAA800FFABD9 /* diagram_28.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_28.svg; sourceTree = "<group>"; };
+		B235BAD72EE2AAA800FFABD9 /* diagram_29.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_29.svg; sourceTree = "<group>"; };
+		B235BAD82EE2AAA800FFABD9 /* diagram_30.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_30.svg; sourceTree = "<group>"; };
+		B235BAD92EE2AAA800FFABD9 /* diagram_31.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_31.svg; sourceTree = "<group>"; };
+		B235BADA2EE2AAA800FFABD9 /* diagram_32.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_32.svg; sourceTree = "<group>"; };
+		B235BADB2EE2AAA800FFABD9 /* diagram_33.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_33.svg; sourceTree = "<group>"; };
+		B235BADC2EE2AAA800FFABD9 /* diagram_34.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_34.svg; sourceTree = "<group>"; };
+		B235BADD2EE2AAA800FFABD9 /* diagram_35.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_35.svg; sourceTree = "<group>"; };
+		B235BADE2EE2AAA800FFABD9 /* diagram_36.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_36.svg; sourceTree = "<group>"; };
+		B235BADF2EE2AAA800FFABD9 /* diagram_37.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_37.svg; sourceTree = "<group>"; };
+		B235BAE02EE2AAA800FFABD9 /* diagram_38.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_38.svg; sourceTree = "<group>"; };
+		B235BAE12EE2AAA800FFABD9 /* diagram_39.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_39.svg; sourceTree = "<group>"; };
+		B235BAE22EE2AAA800FFABD9 /* diagram_40.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_40.svg; sourceTree = "<group>"; };
+		B235BAE32EE2AAA800FFABD9 /* diagram_41.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_41.svg; sourceTree = "<group>"; };
+		B235BAE42EE2AAA800FFABD9 /* diagram_42.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_42.svg; sourceTree = "<group>"; };
+		B235BAE52EE2AAA800FFABD9 /* diagram_43.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_43.svg; sourceTree = "<group>"; };
+		B235BAE62EE2AAA800FFABD9 /* diagram_44.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_44.svg; sourceTree = "<group>"; };
+		B235BAE72EE2AAA800FFABD9 /* diagram_45.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_45.svg; sourceTree = "<group>"; };
+		B235BAE82EE2AAA800FFABD9 /* diagram_46.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_46.svg; sourceTree = "<group>"; };
+		B235BAE92EE2AAA800FFABD9 /* diagram_47.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_47.svg; sourceTree = "<group>"; };
+		B235BAEA2EE2AAA800FFABD9 /* diagram_48.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_48.svg; sourceTree = "<group>"; };
+		B235BAEB2EE2AAA800FFABD9 /* diagram_49.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_49.svg; sourceTree = "<group>"; };
+		B235BAEC2EE2AAA800FFABD9 /* diagram_50.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_50.svg; sourceTree = "<group>"; };
+		B235BAED2EE2AAA800FFABD9 /* diagram_51.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_51.svg; sourceTree = "<group>"; };
+		B235BAEE2EE2AAA800FFABD9 /* diagram_52.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_52.svg; sourceTree = "<group>"; };
+		B235BAEF2EE2AAA800FFABD9 /* diagram_53.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_53.svg; sourceTree = "<group>"; };
+		B235BAF02EE2AAA800FFABD9 /* diagram_54.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_54.svg; sourceTree = "<group>"; };
+		B235BAF12EE2AAA800FFABD9 /* diagram_55.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_55.svg; sourceTree = "<group>"; };
+		B235BAF22EE2AAA800FFABD9 /* diagram_56.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_56.svg; sourceTree = "<group>"; };
+		B235BAF32EE2AAA800FFABD9 /* diagram_57.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_57.svg; sourceTree = "<group>"; };
+		B235BAF42EE2AAA800FFABD9 /* diagram_58.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_58.svg; sourceTree = "<group>"; };
+		B235BAF52EE2AAA800FFABD9 /* diagram_59.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_59.svg; sourceTree = "<group>"; };
+		B235BAF62EE2AAA800FFABD9 /* diagram_60.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_60.svg; sourceTree = "<group>"; };
+		B235BAF72EE2AAA800FFABD9 /* diagram_61.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_61.svg; sourceTree = "<group>"; };
+		B235BAF82EE2AAA800FFABD9 /* diagram_62.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_62.svg; sourceTree = "<group>"; };
+		B235BAF92EE2AAA800FFABD9 /* diagram_63.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_63.svg; sourceTree = "<group>"; };
+		B235BAFA2EE2AAA800FFABD9 /* diagram_64.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_64.svg; sourceTree = "<group>"; };
+		B235BAFB2EE2AAA800FFABD9 /* diagram_65.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_65.svg; sourceTree = "<group>"; };
+		B235BAFC2EE2AAA800FFABD9 /* diagram_66.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_66.svg; sourceTree = "<group>"; };
+		B235BAFD2EE2AAA800FFABD9 /* diagram_67.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_67.svg; sourceTree = "<group>"; };
+		B235BAFE2EE2AAA800FFABD9 /* diagram_68.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_68.svg; sourceTree = "<group>"; };
+		B235BAFF2EE2AAA800FFABD9 /* diagram_69.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_69.svg; sourceTree = "<group>"; };
+		B235BB002EE2AAA800FFABD9 /* diagram_70.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_70.svg; sourceTree = "<group>"; };
+		B235BB012EE2AAA800FFABD9 /* diagram_71.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_71.svg; sourceTree = "<group>"; };
+		B235BB022EE2AAA800FFABD9 /* diagram_72.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_72.svg; sourceTree = "<group>"; };
+		B235BB032EE2AAA800FFABD9 /* diagram_73.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_73.svg; sourceTree = "<group>"; };
+		B235BB042EE2AAA800FFABD9 /* diagram_74.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_74.svg; sourceTree = "<group>"; };
+		B235BB052EE2AAA800FFABD9 /* diagram_75.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_75.svg; sourceTree = "<group>"; };
+		B235BB062EE2AAA800FFABD9 /* diagram_76.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_76.svg; sourceTree = "<group>"; };
+		B235BB072EE2AAA800FFABD9 /* diagram_77.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_77.svg; sourceTree = "<group>"; };
+		B235BB082EE2AAA800FFABD9 /* diagram_78.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_78.svg; sourceTree = "<group>"; };
+		B235BB092EE2AAA800FFABD9 /* diagram_79.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_79.svg; sourceTree = "<group>"; };
+		B235BB0A2EE2AAA800FFABD9 /* diagram_80.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_80.svg; sourceTree = "<group>"; };
+		B235BB0B2EE2AAA800FFABD9 /* diagram_81.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_81.svg; sourceTree = "<group>"; };
+		B235BB0C2EE2AAA800FFABD9 /* diagram_82.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_82.svg; sourceTree = "<group>"; };
+		B235BB0D2EE2AAA800FFABD9 /* diagram_83.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_83.svg; sourceTree = "<group>"; };
+		B235BB0E2EE2AAA800FFABD9 /* diagram_84.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_84.svg; sourceTree = "<group>"; };
+		B235BB0F2EE2AAA800FFABD9 /* diagram_85.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_85.svg; sourceTree = "<group>"; };
+		B235BB102EE2AAA800FFABD9 /* diagram_86.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = diagram_86.svg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		01 = {
+			isa = PBXGroup;
+			children = (
+				02 /* NauticalRules */,
+				03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		02 /* NauticalRules */ = {
+			isa = PBXGroup;
+			children = (
+				04 /* Sources */,
+				05 /* Resources */,
+			);
+			path = NauticalRules;
+			sourceTree = "<group>";
+		};
+		03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100 /* NauticalRules.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				06 /* App */,
+				07 /* Core */,
+				08 /* Models */,
+				09 /* Services */,
+				10 /* ViewModels */,
+				11 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B235BB112EE2AAA800FFABD9 /* Diagrams */,
+				122 /* Assets.xcassets */,
+				123 /* Nautical Rules Test Bank.csv */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		06 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				101 /* NauticalRulesApp.swift */,
+				102 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		07 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				12 /* Design */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		08 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				104 /* Question.swift */,
+				105 /* QuizSession.swift */,
+				106 /* UserProgress.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		09 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				107 /* CSVParser.swift */,
+				108 /* QuestionService.swift */,
+				109 /* ProgressService.swift */,
+				128 /* PDFGenerator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		10 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				110 /* HomeViewModel.swift */,
+				111 /* QuizViewModel.swift */,
+				112 /* ProgressViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		11 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13 /* Home */,
+				20 /* Practice */,
+				14 /* Quiz */,
+				15 /* Results */,
+				16 /* Progress */,
+				17 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		12 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				103 /* Theme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		13 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				113 /* HomeView.swift */,
+				18 /* Components */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		14 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				115 /* QuizView.swift */,
+				19 /* Components */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		15 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				119 /* ResultsView.swift */,
+				125 /* ReviewAnswersView.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		16 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				120 /* ProgressView.swift */,
+				126 /* HistoryResultsView.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		17 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				121 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		20 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				124 /* PracticeView.swift */,
+				127 /* PracticeSessionView.swift */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		18 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				114 /* ProgressRingView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		19 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				116 /* AnswerButton.swift */,
+				117 /* ExplanationCard.swift */,
+				118 /* DiagramView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B235BB112EE2AAA800FFABD9 /* Diagrams */ = {
+			isa = PBXGroup;
+			children = (
+				B235BABB2EE2AAA800FFABD9 /* diagram_01.svg */,
+				B235BABC2EE2AAA800FFABD9 /* diagram_02.svg */,
+				B235BABD2EE2AAA800FFABD9 /* diagram_03.svg */,
+				B235BABE2EE2AAA800FFABD9 /* diagram_04.svg */,
+				B235BABF2EE2AAA800FFABD9 /* diagram_05.svg */,
+				B235BAC02EE2AAA800FFABD9 /* diagram_06.svg */,
+				B235BAC12EE2AAA800FFABD9 /* diagram_07.svg */,
+				B235BAC22EE2AAA800FFABD9 /* diagram_08.svg */,
+				B235BAC32EE2AAA800FFABD9 /* diagram_09.svg */,
+				B235BAC42EE2AAA800FFABD9 /* diagram_10.svg */,
+				B235BAC52EE2AAA800FFABD9 /* diagram_11.svg */,
+				B235BAC62EE2AAA800FFABD9 /* diagram_12.svg */,
+				B235BAC72EE2AAA800FFABD9 /* diagram_13.svg */,
+				B235BAC82EE2AAA800FFABD9 /* diagram_14.svg */,
+				B235BAC92EE2AAA800FFABD9 /* diagram_15.svg */,
+				B235BACA2EE2AAA800FFABD9 /* diagram_16.svg */,
+				B235BACB2EE2AAA800FFABD9 /* diagram_17.svg */,
+				B235BACC2EE2AAA800FFABD9 /* diagram_18.svg */,
+				B235BACD2EE2AAA800FFABD9 /* diagram_19.svg */,
+				B235BACE2EE2AAA800FFABD9 /* diagram_20.svg */,
+				B235BACF2EE2AAA800FFABD9 /* diagram_21.svg */,
+				B235BAD02EE2AAA800FFABD9 /* diagram_22.svg */,
+				B235BAD12EE2AAA800FFABD9 /* diagram_23.svg */,
+				B235BAD22EE2AAA800FFABD9 /* diagram_24.svg */,
+				B235BAD32EE2AAA800FFABD9 /* diagram_25.svg */,
+				B235BAD42EE2AAA800FFABD9 /* diagram_26.svg */,
+				B235BAD52EE2AAA800FFABD9 /* diagram_27.svg */,
+				B235BAD62EE2AAA800FFABD9 /* diagram_28.svg */,
+				B235BAD72EE2AAA800FFABD9 /* diagram_29.svg */,
+				B235BAD82EE2AAA800FFABD9 /* diagram_30.svg */,
+				B235BAD92EE2AAA800FFABD9 /* diagram_31.svg */,
+				B235BADA2EE2AAA800FFABD9 /* diagram_32.svg */,
+				B235BADB2EE2AAA800FFABD9 /* diagram_33.svg */,
+				B235BADC2EE2AAA800FFABD9 /* diagram_34.svg */,
+				B235BADD2EE2AAA800FFABD9 /* diagram_35.svg */,
+				B235BADE2EE2AAA800FFABD9 /* diagram_36.svg */,
+				B235BADF2EE2AAA800FFABD9 /* diagram_37.svg */,
+				B235BAE02EE2AAA800FFABD9 /* diagram_38.svg */,
+				B235BAE12EE2AAA800FFABD9 /* diagram_39.svg */,
+				B235BAE22EE2AAA800FFABD9 /* diagram_40.svg */,
+				B235BAE32EE2AAA800FFABD9 /* diagram_41.svg */,
+				B235BAE42EE2AAA800FFABD9 /* diagram_42.svg */,
+				B235BAE52EE2AAA800FFABD9 /* diagram_43.svg */,
+				B235BAE62EE2AAA800FFABD9 /* diagram_44.svg */,
+				B235BAE72EE2AAA800FFABD9 /* diagram_45.svg */,
+				B235BAE82EE2AAA800FFABD9 /* diagram_46.svg */,
+				B235BAE92EE2AAA800FFABD9 /* diagram_47.svg */,
+				B235BAEA2EE2AAA800FFABD9 /* diagram_48.svg */,
+				B235BAEB2EE2AAA800FFABD9 /* diagram_49.svg */,
+				B235BAEC2EE2AAA800FFABD9 /* diagram_50.svg */,
+				B235BAED2EE2AAA800FFABD9 /* diagram_51.svg */,
+				B235BAEE2EE2AAA800FFABD9 /* diagram_52.svg */,
+				B235BAEF2EE2AAA800FFABD9 /* diagram_53.svg */,
+				B235BAF02EE2AAA800FFABD9 /* diagram_54.svg */,
+				B235BAF12EE2AAA800FFABD9 /* diagram_55.svg */,
+				B235BAF22EE2AAA800FFABD9 /* diagram_56.svg */,
+				B235BAF32EE2AAA800FFABD9 /* diagram_57.svg */,
+				B235BAF42EE2AAA800FFABD9 /* diagram_58.svg */,
+				B235BAF52EE2AAA800FFABD9 /* diagram_59.svg */,
+				B235BAF62EE2AAA800FFABD9 /* diagram_60.svg */,
+				B235BAF72EE2AAA800FFABD9 /* diagram_61.svg */,
+				B235BAF82EE2AAA800FFABD9 /* diagram_62.svg */,
+				B235BAF92EE2AAA800FFABD9 /* diagram_63.svg */,
+				B235BAFA2EE2AAA800FFABD9 /* diagram_64.svg */,
+				B235BAFB2EE2AAA800FFABD9 /* diagram_65.svg */,
+				B235BAFC2EE2AAA800FFABD9 /* diagram_66.svg */,
+				B235BAFD2EE2AAA800FFABD9 /* diagram_67.svg */,
+				B235BAFE2EE2AAA800FFABD9 /* diagram_68.svg */,
+				B235BAFF2EE2AAA800FFABD9 /* diagram_69.svg */,
+				B235BB002EE2AAA800FFABD9 /* diagram_70.svg */,
+				B235BB012EE2AAA800FFABD9 /* diagram_71.svg */,
+				B235BB022EE2AAA800FFABD9 /* diagram_72.svg */,
+				B235BB032EE2AAA800FFABD9 /* diagram_73.svg */,
+				B235BB042EE2AAA800FFABD9 /* diagram_74.svg */,
+				B235BB052EE2AAA800FFABD9 /* diagram_75.svg */,
+				B235BB062EE2AAA800FFABD9 /* diagram_76.svg */,
+				B235BB072EE2AAA800FFABD9 /* diagram_77.svg */,
+				B235BB082EE2AAA800FFABD9 /* diagram_78.svg */,
+				B235BB092EE2AAA800FFABD9 /* diagram_79.svg */,
+				B235BB0A2EE2AAA800FFABD9 /* diagram_80.svg */,
+				B235BB0B2EE2AAA800FFABD9 /* diagram_81.svg */,
+				B235BB0C2EE2AAA800FFABD9 /* diagram_82.svg */,
+				B235BB0D2EE2AAA800FFABD9 /* diagram_83.svg */,
+				B235BB0E2EE2AAA800FFABD9 /* diagram_84.svg */,
+				B235BB0F2EE2AAA800FFABD9 /* diagram_85.svg */,
+				B235BB102EE2AAA800FFABD9 /* diagram_86.svg */,
+			);
+			path = Diagrams;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		200 /* NauticalRules */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 300 /* Build configuration list for PBXNativeTarget "NauticalRules" */;
+			buildPhases = (
+				201 /* Sources */,
+				202 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NauticalRules;
+			productName = NauticalRules;
+			productReference = 100 /* NauticalRules.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		400 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					200 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 401 /* Build configuration list for PBXProject "NauticalRules" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01;
+			productRefGroup = 03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				200 /* NauticalRules */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		202 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				022 /* Assets.xcassets in Resources */,
+				B235BB122EE2AAA800FFABD9 /* diagram_74.svg in Resources */,
+				B235BB132EE2AAA800FFABD9 /* diagram_67.svg in Resources */,
+				B235BB142EE2AAA800FFABD9 /* diagram_39.svg in Resources */,
+				B235BB152EE2AAA800FFABD9 /* diagram_70.svg in Resources */,
+				B235BB162EE2AAA800FFABD9 /* diagram_66.svg in Resources */,
+				B235BB172EE2AAA800FFABD9 /* diagram_06.svg in Resources */,
+				B235BB182EE2AAA800FFABD9 /* diagram_82.svg in Resources */,
+				B235BB192EE2AAA800FFABD9 /* diagram_68.svg in Resources */,
+				B235BB1A2EE2AAA800FFABD9 /* diagram_31.svg in Resources */,
+				B235BB1B2EE2AAA800FFABD9 /* diagram_12.svg in Resources */,
+				B235BB1C2EE2AAA800FFABD9 /* diagram_73.svg in Resources */,
+				B235BB1D2EE2AAA800FFABD9 /* diagram_13.svg in Resources */,
+				B235BB1E2EE2AAA800FFABD9 /* diagram_22.svg in Resources */,
+				B235BB1F2EE2AAA800FFABD9 /* diagram_77.svg in Resources */,
+				B235BB202EE2AAA800FFABD9 /* diagram_11.svg in Resources */,
+				B235BB212EE2AAA800FFABD9 /* diagram_85.svg in Resources */,
+				B235BB222EE2AAA800FFABD9 /* diagram_61.svg in Resources */,
+				B235BB232EE2AAA800FFABD9 /* diagram_32.svg in Resources */,
+				B235BB242EE2AAA800FFABD9 /* diagram_34.svg in Resources */,
+				B235BB252EE2AAA800FFABD9 /* diagram_03.svg in Resources */,
+				B235BB262EE2AAA800FFABD9 /* diagram_29.svg in Resources */,
+				B235BB272EE2AAA800FFABD9 /* diagram_44.svg in Resources */,
+				B235BB282EE2AAA800FFABD9 /* diagram_28.svg in Resources */,
+				B235BB292EE2AAA800FFABD9 /* diagram_71.svg in Resources */,
+				B235BB2A2EE2AAA800FFABD9 /* diagram_08.svg in Resources */,
+				B235BB2B2EE2AAA800FFABD9 /* diagram_75.svg in Resources */,
+				B235BB2C2EE2AAA800FFABD9 /* diagram_10.svg in Resources */,
+				B235BB2D2EE2AAA800FFABD9 /* diagram_86.svg in Resources */,
+				B235BB2E2EE2AAA800FFABD9 /* diagram_53.svg in Resources */,
+				B235BB2F2EE2AAA800FFABD9 /* diagram_05.svg in Resources */,
+				B235BB302EE2AAA800FFABD9 /* diagram_50.svg in Resources */,
+				B235BB312EE2AAA800FFABD9 /* diagram_76.svg in Resources */,
+				B235BB322EE2AAA800FFABD9 /* diagram_40.svg in Resources */,
+				B235BB332EE2AAA800FFABD9 /* diagram_62.svg in Resources */,
+				B235BB342EE2AAA800FFABD9 /* diagram_07.svg in Resources */,
+				B235BB352EE2AAA800FFABD9 /* diagram_51.svg in Resources */,
+				B235BB362EE2AAA800FFABD9 /* diagram_35.svg in Resources */,
+				B235BB372EE2AAA800FFABD9 /* diagram_14.svg in Resources */,
+				B235BB382EE2AAA800FFABD9 /* diagram_49.svg in Resources */,
+				B235BB392EE2AAA800FFABD9 /* diagram_20.svg in Resources */,
+				B235BB3A2EE2AAA800FFABD9 /* diagram_47.svg in Resources */,
+				B235BB3B2EE2AAA800FFABD9 /* diagram_56.svg in Resources */,
+				B235BB3C2EE2AAA800FFABD9 /* diagram_26.svg in Resources */,
+				B235BB3D2EE2AAA800FFABD9 /* diagram_27.svg in Resources */,
+				B235BB3E2EE2AAA800FFABD9 /* diagram_72.svg in Resources */,
+				B235BB3F2EE2AAA800FFABD9 /* diagram_54.svg in Resources */,
+				B235BB402EE2AAA800FFABD9 /* diagram_09.svg in Resources */,
+				B235BB412EE2AAA800FFABD9 /* diagram_59.svg in Resources */,
+				B235BB422EE2AAA800FFABD9 /* diagram_79.svg in Resources */,
+				B235BB432EE2AAA800FFABD9 /* diagram_37.svg in Resources */,
+				B235BB442EE2AAA800FFABD9 /* diagram_04.svg in Resources */,
+				B235BB452EE2AAA800FFABD9 /* diagram_24.svg in Resources */,
+				B235BB462EE2AAA800FFABD9 /* diagram_25.svg in Resources */,
+				B235BB472EE2AAA800FFABD9 /* diagram_48.svg in Resources */,
+				B235BB482EE2AAA800FFABD9 /* diagram_36.svg in Resources */,
+				B235BB492EE2AAA800FFABD9 /* diagram_17.svg in Resources */,
+				B235BB4A2EE2AAA800FFABD9 /* diagram_41.svg in Resources */,
+				B235BB4B2EE2AAA800FFABD9 /* diagram_42.svg in Resources */,
+				B235BB4C2EE2AAA800FFABD9 /* diagram_46.svg in Resources */,
+				B235BB4D2EE2AAA800FFABD9 /* diagram_80.svg in Resources */,
+				B235BB4E2EE2AAA800FFABD9 /* diagram_23.svg in Resources */,
+				B235BB4F2EE2AAA800FFABD9 /* diagram_69.svg in Resources */,
+				B235BB502EE2AAA800FFABD9 /* diagram_02.svg in Resources */,
+				B235BB512EE2AAA800FFABD9 /* diagram_81.svg in Resources */,
+				B235BB522EE2AAA800FFABD9 /* diagram_84.svg in Resources */,
+				B235BB532EE2AAA800FFABD9 /* diagram_16.svg in Resources */,
+				B235BB542EE2AAA800FFABD9 /* diagram_33.svg in Resources */,
+				B235BB552EE2AAA800FFABD9 /* diagram_52.svg in Resources */,
+				B235BB562EE2AAA800FFABD9 /* diagram_57.svg in Resources */,
+				B235BB572EE2AAA800FFABD9 /* diagram_30.svg in Resources */,
+				B235BB582EE2AAA800FFABD9 /* diagram_63.svg in Resources */,
+				B235BB592EE2AAA800FFABD9 /* diagram_64.svg in Resources */,
+				B235BB5A2EE2AAA800FFABD9 /* diagram_65.svg in Resources */,
+				B235BB5B2EE2AAA800FFABD9 /* diagram_60.svg in Resources */,
+				B235BB5C2EE2AAA800FFABD9 /* diagram_38.svg in Resources */,
+				B235BB5D2EE2AAA800FFABD9 /* diagram_19.svg in Resources */,
+				B235BB5E2EE2AAA800FFABD9 /* diagram_83.svg in Resources */,
+				B235BB5F2EE2AAA800FFABD9 /* diagram_15.svg in Resources */,
+				B235BB602EE2AAA800FFABD9 /* diagram_21.svg in Resources */,
+				B235BB612EE2AAA800FFABD9 /* diagram_58.svg in Resources */,
+				B235BB622EE2AAA800FFABD9 /* diagram_78.svg in Resources */,
+				B235BB632EE2AAA800FFABD9 /* diagram_18.svg in Resources */,
+				B235BB642EE2AAA800FFABD9 /* diagram_43.svg in Resources */,
+				B235BB652EE2AAA800FFABD9 /* diagram_45.svg in Resources */,
+				B235BB662EE2AAA800FFABD9 /* diagram_01.svg in Resources */,
+				B235BB672EE2AAA800FFABD9 /* diagram_55.svg in Resources */,
+				023 /* Nautical Rules Test Bank.csv in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		201 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001 /* NauticalRulesApp.swift in Sources */,
+				002 /* ContentView.swift in Sources */,
+				003 /* Theme.swift in Sources */,
+				004 /* Question.swift in Sources */,
+				005 /* QuizSession.swift in Sources */,
+				006 /* UserProgress.swift in Sources */,
+				007 /* CSVParser.swift in Sources */,
+				008 /* QuestionService.swift in Sources */,
+				009 /* ProgressService.swift in Sources */,
+				010 /* HomeViewModel.swift in Sources */,
+				011 /* QuizViewModel.swift in Sources */,
+				012 /* ProgressViewModel.swift in Sources */,
+				013 /* HomeView.swift in Sources */,
+				014 /* ProgressRingView.swift in Sources */,
+				015 /* QuizView.swift in Sources */,
+				016 /* AnswerButton.swift in Sources */,
+				017 /* ExplanationCard.swift in Sources */,
+				018 /* DiagramView.swift in Sources */,
+				019 /* ResultsView.swift in Sources */,
+				020 /* ProgressView.swift in Sources */,
+				021 /* SettingsView.swift in Sources */,
+				024 /* PracticeView.swift in Sources */,
+				025 /* ReviewAnswersView.swift in Sources */,
+				026 /* HistoryResultsView.swift in Sources */,
+				027 /* PracticeSessionView.swift in Sources */,
+				028 /* PDFGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		500 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Nautical Rules";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nauticalrules.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Nautical Rules";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nauticalrules.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		300 /* Build configuration list for PBXNativeTarget "NauticalRules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				502 /* Debug */,
+				503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		401 /* Build configuration list for PBXProject "NauticalRules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				500 /* Debug */,
+				501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 400 /* Project object */;
+}

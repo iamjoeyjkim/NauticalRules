@@ -1,0 +1,54 @@
+﻿Product Requirements Document: Nautical Rules - Quiz & Study Aide ⚓️
+
+
+1. Overview
+   1. “Nautical Rules - Quiz & Study Aide” is a mobile application designed to help United States Coast Guard members, U.S. Navy personnel, merchant mariners, and recreational boaters study and test their knowledge of the U.S. Coast Guard Navigation Rules and Regulations Handbook (Rules of the Road). The app's primary focus is on providing a comprehensive, offline-capable quiz and review platform to facilitate learning and exam preparation, even while at sea without an internet connection.
+2. 2. Target Audience
+   1. Aspiring Mariners: Individuals studying for their USCG Captain's License or other marine credentials.
+   2. Coast Guard Personnel: Cadets and active members needing to maintain proficiency in the Rules of the Road.
+   3. U.S. Navy Personnel: Surface Warfare Officers (SWOs) and other sailors who must be proficient in navigation and the Rules of the Road.
+   4. Recreational Boaters: Boaters who want to improve their safety and knowledge on the water.
+3. 3. Core Features
+   1. Offline-First Architecture
+      1. Requirement: The application must be **fully functional without an internet connection**.
+      2. Implementation: The entire question bank, including all text, images/illustrations, and explanations, must be stored locally on the user's device upon installation. User-generated data, such as test history and scores, will also be stored locally.
+   2. Quiz Engine
+      1. This is the core of the app. It will present questions to the user in a clean, easy-to-read format.
+      2. Question Format: Each screen will display a single question with four multiple-choice answers (A, B, C, D).
+      3. Illustrations: Questions that require a visual aid (e.g., vessel lights, day shapes, sound signals) will display an accompanying illustration directly above or below the question text.
+      4. Answer Feedback:
+         1. Upon selecting an answer, the app should immediately indicate if it was correct or incorrect.
+         2. If the user's answer is **incorrect**, the app will highlight the correct answer and display a concise **explanation** detailing why that answer is correct, often citing the specific rule number.
+         3. Score Calculation:** The user's final score will be hidden until the entire quiz is completed to simulate a real testing environment.
+   3. Quiz Modes
+      1. The user can choose how they want to study from the main menu.
+      2. Custom Test Mode:
+         1. The user can select the number of questions for their quiz (e.g., preset options like **10, 25, 50, or 100 questions**).
+         2. Questions will be randomly pulled from the entire question bank.
+         3. A results screen will be displayed upon completion, showing the final score (e.g., "45/50 - 90%").
+      3. Practice Mode (Full Bank):
+         1. This mode allows the user to go through the entire question bank in a continuous, randomly generated sequence.
+         2. This is designed for comprehensive review rather than a scored test. The app will save the user's progress so they can exit and resume where they left off.
+   4. Test History & Review
+      1. Users must be able to track their progress and learn from their mistakes.
+      2. History Screen: A dedicated section of the app will list all previously completed "Custom Tests." Each entry will show the **date taken**, the **number of questions**, and the **final score**.
+      3. Detailed Review: Tapping on a past test will take the user to a detailed review screen where they can scroll through each question from that test.
+      4. For each question, it will clearly show:
+         1. The question and its illustration (if any).
+         2. The correct answer.
+         3. The answer the user selected (and indicate if it was incorrect).
+   5. Performance Analytics 📈
+      1. This feature provides users with actionable insights into their study progress.
+      2. Categorization: Each question in the bank will be tagged with its corresponding section/chapter from the *Coast Guard Navigation Rules and Regulations Handbook* (e.g., "Part B - Steering and Sailing Rules," "Part C - Lights and Shapes," "Annex II - Additional Signals").
+      3. Analysis Dashboard: A dashboard will display the user's performance broken down by these categories.
+      4. Visualization: This could be represented with bar charts or percentages showing the user's accuracy in each category. This helps them identify **strong areas** and **weak areas** that requires more focus.
+4. Data Management
+   1. Question Bank Format: The question bank you provide will be integrated into the app. A **CSV (Comma-Separated Values) file** is the recommended format for its simplicity and ease of parsing.
+   2. CSV Structure: The CSV file should have a clear header and structure. Each row will represent one question.
+      1. question_id, question_text, option_a, option_b, option_c, option_d, correct_answer, answer_explanation, question_diagram, question_category.
+   3. Image Handling: The `image_filename` column will correspond to an image file (e.g., `trawling_shape.png`) that will be bundled within the app's assets.
+5. Future Considerations (Version 2.0)
+   1. Flashcard Mode: A simple study mode where users can flip through rules, light configurations, and day shapes.
+   2. Timed Exam Simulation: A mode that simulates the time pressure of the actual USCG exam.
+   3. Multiple Rule Sets: Ability to switch between **Inland** and **International (COLREGs)** rules for quizzing.
+   4. Searchable Handbook: Integrate a searchable, digital version of the Rules of the Road handbook within the app.
