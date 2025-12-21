@@ -190,6 +190,7 @@ class QuizViewModel: ObservableObject {
                 progressService.recordAnswer(
                     questionId: question.id,
                     category: question.category,
+                    chapterCategory: question.chapterCategory,
                     isCorrect: isCorrect
                 )
             }
@@ -215,6 +216,7 @@ class QuizViewModel: ObservableObject {
             progressService.recordAnswer(
                 questionId: question.id,
                 category: question.category,
+                chapterCategory: question.chapterCategory,
                 isCorrect: isCorrect
             )
         }

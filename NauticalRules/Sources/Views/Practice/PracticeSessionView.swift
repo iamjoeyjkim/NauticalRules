@@ -12,6 +12,7 @@ struct PracticeSessionView: View {
     // MARK: - Properties
     
     let category: QuestionCategory?
+    let chapterCategory: String?  // For filtering by specific rule (e.g., "Rule 34")
     let onDismiss: () -> Void
     
     @EnvironmentObject var questionService: QuestionService
@@ -27,7 +28,9 @@ struct PracticeSessionView: View {
     // MARK: - Computed Properties
     
     private var questions: [Question] {
-        if let category = category {
+        if let chapterCategory = chapterCategory {
+            return questionService.questions(for: chapterCategory)
+        } else if let category = category {
             return questionService.questions(for: category)
         } else {
             return questionService.allQuestions
@@ -41,7 +44,10 @@ struct PracticeSessionView: View {
     }
     
     private var categoryName: String {
-        category?.shortName ?? "All Categories"
+        if let chapterCategory = chapterCategory {
+            return chapterCategory
+        }
+        return category?.shortName ?? "All Categories"
     }
     
     private var canGoBack: Bool {
@@ -311,7 +317,10 @@ struct PracticeSessionView: View {
     // MARK: - Position Persistence
     
     private var positionKey: String {
-        "practicePosition_\(category?.rawValue ?? "all")"
+        if let chapterCategory = chapterCategory {
+            return "practicePosition_rule_\(chapterCategory)"
+        }
+        return "practicePosition_\(category?.rawValue ?? "all")"
     }
     
     private func loadPracticePosition() {
@@ -326,7 +335,7 @@ struct PracticeSessionView: View {
 // MARK: - Preview
 
 #Preview {
-    PracticeSessionView(category: nil, onDismiss: {})
+    PracticeSessionView(category: nil, chapterCategory: nil, onDismiss: {})
         .environmentObject(QuestionService.shared)
         .environmentObject(ProgressService.shared)
 }

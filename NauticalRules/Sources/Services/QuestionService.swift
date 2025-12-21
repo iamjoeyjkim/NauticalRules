@@ -44,47 +44,14 @@ class QuestionService: ObservableObject {
     func loadQuestions() {
         guard !isLoaded else { return }
         
-        print("=== QuestionService: Starting to load questions ===")
-        print("Bundle path: \(Bundle.main.bundlePath)")
-        
-        // Debug: List all resources in bundle
-        if let resourcePath = Bundle.main.resourcePath {
-            do {
-                let items = try FileManager.default.contentsOfDirectory(atPath: resourcePath)
-                print("Files in bundle root (\(items.count) items):")
-                for item in items.prefix(20) {
-                    print("  - \(item)")
-                }
-                if items.count > 20 {
-                    print("  ... and \(items.count - 20) more")
-                }
-            } catch {
-                print("Error listing bundle contents: \(error)")
-            }
-        }
-        
-        // Try to find CSV files
-        if let csvURLs = Bundle.main.urls(forResourcesWithExtension: "csv", subdirectory: nil) {
-            print("CSV files found: \(csvURLs.count)")
-            for url in csvURLs {
-                print("  - \(url.lastPathComponent)")
-            }
-        } else {
-            print("No CSV files found in bundle!")
-        }
-        
         let questions = CSVParser.loadQuestionsFromBundle()
         
         if questions.isEmpty {
             loadError = "Failed to load questions from the test bank."
-            print("ERROR: No questions loaded!")
         } else {
             allQuestions = questions
             isLoaded = true
-            print("SUCCESS: Loaded \(questions.count) questions")
         }
-        
-        print("=== QuestionService: Finished loading ===")
     }
     
     func loadQuestions(from content: String) {
@@ -159,6 +126,29 @@ class QuestionService: ObservableObject {
         var breakdown: [JurisdictionType: Int] = [:]
         for jurisdiction in JurisdictionType.allCases {
             breakdown[jurisdiction] = questionCount(for: jurisdiction)
+        }
+        return breakdown
+    }
+    
+    // MARK: - Chapter Categories
+    
+    var allChapterCategories: [String] {
+        let categories = Set(allQuestions.map { $0.chapterCategory })
+        return categories.filter { !$0.isEmpty }.sorted()
+    }
+    
+    func questions(for chapterCategory: String) -> [Question] {
+        allQuestions.filter { $0.chapterCategory == chapterCategory }
+    }
+    
+    func questionCount(for chapterCategory: String) -> Int {
+        questions(for: chapterCategory).count
+    }
+    
+    func getChapterCategoryBreakdown() -> [String: Int] {
+        var breakdown: [String: Int] = [:]
+        for chapterCategory in allChapterCategories {
+            breakdown[chapterCategory] = questionCount(for: chapterCategory)
         }
         return breakdown
     }

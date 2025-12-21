@@ -347,7 +347,6 @@ class PDFGenerator {
             try data.write(to: fileURL)
             return fileURL
         } catch {
-            print("Error saving PDF: \(error)")
             return nil
         }
     }

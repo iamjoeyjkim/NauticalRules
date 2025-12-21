@@ -13,6 +13,7 @@ struct UserProgress: Codable {
     var questionsAnswered: Int
     var correctAnswers: Int
     var categoryStats: [String: CategoryStats]
+    var chapterCategoryStats: [String: CategoryStats]  // Stats by rule (e.g., "Rule 34")
     var bookmarkedQuestions: [Int]  // Ordered array: most recently added at the end
     var incorrectQuestions: Set<Int>
     var lastSessionDate: Date?
@@ -27,6 +28,7 @@ struct UserProgress: Codable {
         self.questionsAnswered = 0
         self.correctAnswers = 0
         self.categoryStats = [:]
+        self.chapterCategoryStats = [:]
         self.bookmarkedQuestions = []
         self.incorrectQuestions = []
         self.lastSessionDate = nil
@@ -34,6 +36,33 @@ struct UserProgress: Codable {
         self.totalQuizzesTaken = 0
         self.totalStudyTime = 0
         self.quizHistory = []
+    }
+    
+    // MARK: - Codable (Backward Compatibility)
+    
+    enum CodingKeys: String, CodingKey {
+        case questionsAnswered, correctAnswers, categoryStats, chapterCategoryStats
+        case bookmarkedQuestions, incorrectQuestions, lastSessionDate
+        case streakDays, totalQuizzesTaken, totalStudyTime, quizHistory
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        questionsAnswered = try container.decodeIfPresent(Int.self, forKey: .questionsAnswered) ?? 0
+        correctAnswers = try container.decodeIfPresent(Int.self, forKey: .correctAnswers) ?? 0
+        categoryStats = try container.decodeIfPresent([String: CategoryStats].self, forKey: .categoryStats) ?? [:]
+        
+        // New in v2.0 - provide default for old data
+        chapterCategoryStats = try container.decodeIfPresent([String: CategoryStats].self, forKey: .chapterCategoryStats) ?? [:]
+        
+        bookmarkedQuestions = try container.decodeIfPresent([Int].self, forKey: .bookmarkedQuestions) ?? []
+        incorrectQuestions = try container.decodeIfPresent(Set<Int>.self, forKey: .incorrectQuestions) ?? []
+        lastSessionDate = try container.decodeIfPresent(Date.self, forKey: .lastSessionDate)
+        streakDays = try container.decodeIfPresent(Int.self, forKey: .streakDays) ?? 0
+        totalQuizzesTaken = try container.decodeIfPresent(Int.self, forKey: .totalQuizzesTaken) ?? 0
+        totalStudyTime = try container.decodeIfPresent(TimeInterval.self, forKey: .totalStudyTime) ?? 0
+        quizHistory = try container.decodeIfPresent([QuizHistoryEntry].self, forKey: .quizHistory) ?? []
     }
     
     // MARK: - Computed Properties
@@ -60,7 +89,7 @@ struct UserProgress: Codable {
     
     // MARK: - Methods
     
-    mutating func recordAnswer(questionId: Int, category: QuestionCategory, isCorrect: Bool) {
+    mutating func recordAnswer(questionId: Int, category: QuestionCategory, chapterCategory: String, isCorrect: Bool) {
         questionsAnswered += 1
         if isCorrect {
             correctAnswers += 1
@@ -77,6 +106,16 @@ struct UserProgress: Codable {
             stats.correct += 1
         }
         categoryStats[key] = stats
+        
+        // Update chapter category stats (e.g., "Rule 34")
+        if !chapterCategory.isEmpty {
+            var chapterStats = chapterCategoryStats[chapterCategory] ?? CategoryStats()
+            chapterStats.answered += 1
+            if isCorrect {
+                chapterStats.correct += 1
+            }
+            chapterCategoryStats[chapterCategory] = chapterStats
+        }
     }
     
     mutating func toggleBookmark(questionId: Int) {

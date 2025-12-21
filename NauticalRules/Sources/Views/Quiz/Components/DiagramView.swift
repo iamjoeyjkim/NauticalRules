@@ -126,20 +126,17 @@ struct DiagramView: View {
         for possibleName in possibleNames {
             // Try loading from Diagrams subdirectory
             if let url = Bundle.main.url(forResource: possibleName, withExtension: "svg", subdirectory: "Diagrams") {
-                print("DiagramView: Found SVG at Diagrams/\(possibleName).svg")
                 loadSVGFromURL(url)
                 return
             }
             
             // Try loading from bundle root
             if let url = Bundle.main.url(forResource: possibleName, withExtension: "svg") {
-                print("DiagramView: Found SVG at \(possibleName).svg")
                 loadSVGFromURL(url)
                 return
             }
         }
         
-        print("DiagramView: Could not find SVG for '\(name)' (tried: \(possibleNames.joined(separator: ", ")))")
         loadError = true
     }
     
@@ -147,9 +144,7 @@ struct DiagramView: View {
         do {
             let content = try String(contentsOf: url, encoding: .utf8)
             svgContent = content
-            print("DiagramView: Loaded SVG from \(url.lastPathComponent)")
         } catch {
-            print("DiagramView: Error loading SVG: \(error)")
             loadError = true
         }
     }

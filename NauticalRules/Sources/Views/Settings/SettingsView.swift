@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
+    
+    // MARK: - Constants
+    
+    private let appStoreURL = URL(string: "https://apps.apple.com/us/app/nautical-rules/id6756220989")!
+    private let appStoreReviewURL = URL(string: "https://apps.apple.com/app/id6756220989?action=write-review")!
     
     // MARK: - State
     
     @State private var showingResetConfirmation = false
     @State private var showingAbout = false
     @State private var showingLegal = false
+    @State private var showingShareSheet = false
     
     @EnvironmentObject var progressService: ProgressService
+    @Environment(\.requestReview) private var requestReview
     
     // MARK: - Body
     
@@ -24,6 +32,9 @@ struct SettingsView: View {
             List {
                 // Data Section
                 dataSection
+                
+                // Feedback Section
+                feedbackSection
                 
                 // About Section
                 aboutSection
@@ -43,6 +54,12 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingLegal) {
                 LegalView()
+            }
+            .sheet(isPresented: $showingShareSheet) {
+                ShareSheet(activityItems: [
+                    "Check out Nautical Rules - the best app to study USCG Navigation Rules!",
+                    appStoreURL
+                ])
             }
         }
     }
@@ -67,6 +84,38 @@ struct SettingsView: View {
         }
     }
     
+    // MARK: - Feedback Section
+    
+    private var feedbackSection: some View {
+        Section {
+            // Rate on App Store
+            Button {
+                requestReview()
+            } label: {
+                SettingsRow(
+                    icon: "star.fill",
+                    title: "Rate on App Store",
+                    subtitle: "Help us with a quick review",
+                    color: AppTheme.Colors.coral
+                )
+            }
+            
+            // Share App
+            Button {
+                showingShareSheet = true
+            } label: {
+                SettingsRow(
+                    icon: "square.and.arrow.up.fill",
+                    title: "Share App",
+                    subtitle: "Tell your friends about Nautical Rules",
+                    color: AppTheme.Colors.oceanBlue
+                )
+            }
+        } header: {
+            Text("Feedback")
+        }
+    }
+    
     // MARK: - About Section
     
     private var aboutSection: some View {
@@ -77,7 +126,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "info.circle.fill",
                     title: "About",
-                    subtitle: "Version 1.0.0",
+                    subtitle: "Version 2.0.0",
                     color: AppTheme.Colors.primaryNavy
                 )
             }
@@ -149,7 +198,7 @@ struct AboutView: View {
                             .font(AppTheme.Typography.largeTitle)
                             .foregroundColor(AppTheme.Colors.textPrimary)
                         
-                        Text("Version 1.0.0")
+                        Text("Version 2.0.0")
                             .font(AppTheme.Typography.subheadline)
                             .foregroundColor(AppTheme.Colors.textSecondary)
                     }

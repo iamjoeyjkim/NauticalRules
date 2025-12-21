@@ -20,6 +20,7 @@ struct Question: Identifiable, Codable, Hashable {
     let diagramName: String?
     let category: QuestionCategory
     let explanation: String
+    let chapterCategory: String
     
     // Computed property to get jurisdiction type from question text
     var jurisdiction: JurisdictionType {

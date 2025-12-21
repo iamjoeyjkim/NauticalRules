@@ -20,6 +20,13 @@ class ProgressService: ObservableObject {
     // MARK: - Private Properties
     
     private let userDefaultsKey = "NauticalRulesUserProgress"
+    private let schemaVersionKey = "NauticalRulesSchemaVersion"
+    
+    /// Current data schema version
+    /// Increment this when making breaking changes to UserProgress
+    /// v1 = Initial release (1.x)
+    /// v2 = Added chapterCategoryStats (2.0)
+    private let currentSchemaVersion = 2
     
     // MARK: - Singleton
     
@@ -33,27 +40,43 @@ class ProgressService: ObservableObject {
     // MARK: - Persistence
     
     func loadProgress() {
+        // Check schema version and migrate if needed
+        let savedVersion = UserDefaults.standard.integer(forKey: schemaVersionKey)
+        if savedVersion < currentSchemaVersion && savedVersion > 0 {
+            migrateDataIfNeeded(from: savedVersion)
+        }
+        
         guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else {
-            print("No saved progress found, using defaults")
+            // First launch - save current schema version
+            UserDefaults.standard.set(currentSchemaVersion, forKey: schemaVersionKey)
             return
         }
         
         do {
             let decoded = try JSONDecoder().decode(UserProgress.self, from: data)
             self.progress = decoded
-            print("Loaded progress: \(progress.questionsAnswered) questions answered")
+            
+            // Update schema version after successful load
+            UserDefaults.standard.set(currentSchemaVersion, forKey: schemaVersionKey)
         } catch {
-            print("Error decoding progress: \(error)")
+            // Silently fail, use default progress
         }
+    }
+    
+    /// Migrate data from older schema versions
+    /// Add migration logic here for future versions
+    private func migrateDataIfNeeded(from oldVersion: Int) {
+        // v1 -> v2: No data transformation needed, just new fields with defaults
+        // Future migrations can be added here:
+        // if oldVersion < 3 { migrate from v2 to v3 }
     }
     
     func saveProgress() {
         do {
             let encoded = try JSONEncoder().encode(progress)
             UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
-            print("Progress saved")
         } catch {
-            print("Error encoding progress: \(error)")
+            // Silently fail
         }
     }
     
@@ -72,8 +95,8 @@ class ProgressService: ObservableObject {
     
     // MARK: - Answer Recording
     
-    func recordAnswer(questionId: Int, category: QuestionCategory, isCorrect: Bool) {
-        progress.recordAnswer(questionId: questionId, category: category, isCorrect: isCorrect)
+    func recordAnswer(questionId: Int, category: QuestionCategory, chapterCategory: String, isCorrect: Bool) {
+        progress.recordAnswer(questionId: questionId, category: category, chapterCategory: chapterCategory, isCorrect: isCorrect)
         saveProgress()
     }
     
@@ -86,6 +109,7 @@ class ProgressService: ObservableObject {
                     progress.recordAnswer(
                         questionId: question.id,
                         category: question.category,
+                        chapterCategory: question.chapterCategory,
                         isCorrect: isCorrect
                     )
                 }
@@ -183,6 +207,43 @@ class ProgressService: ObservableObject {
         let stats = progress.getCategoryProgress(for: category)
         guard totalQuestions > 0 else { return 0 }
         return Double(stats.answered) / Double(totalQuestions) * 100
+    }
+    
+    // MARK: - Chapter Category Statistics (Rule Stats)
+    
+    func getChapterCategoryStats(for chapterCategory: String) -> CategoryStats {
+        progress.chapterCategoryStats[chapterCategory] ?? CategoryStats()
+    }
+    
+    func getChapterCategoryAccuracy(for chapterCategory: String) -> Double {
+        getChapterCategoryStats(for: chapterCategory).accuracy
+    }
+    
+    var allChapterCategoryStats: [(rule: String, stats: CategoryStats)] {
+        progress.chapterCategoryStats
+            .map { (rule: $0.key, stats: $0.value) }
+            .sorted { extractRuleNumber($0.rule) < extractRuleNumber($1.rule) }
+    }
+    
+    /// Extract rule number for sorting (e.g., "Rule 34" -> 34)
+    private func extractRuleNumber(_ rule: String) -> Int {
+        let digits = rule.filter { $0.isNumber }
+        return Int(digits) ?? 999
+    }
+    
+    /// Get the weakest chapter category (rule) for focus area suggestion
+    /// Returns nil if no rules have been practiced with at least 3 questions
+    func getWeakestChapterCategory() -> (rule: String, accuracy: Double, answered: Int)? {
+        let minimumAttempts = 3
+        
+        let eligibleRules = progress.chapterCategoryStats
+            .filter { $0.value.answered >= minimumAttempts }
+            .map { (rule: $0.key, accuracy: $0.value.accuracy, answered: $0.value.answered) }
+        
+        guard !eligibleRules.isEmpty else { return nil }
+        
+        // Return the rule with lowest accuracy
+        return eligibleRules.min { $0.accuracy < $1.accuracy }
     }
     
     // MARK: - Quiz History

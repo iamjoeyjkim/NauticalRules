@@ -30,13 +30,16 @@ struct ProgressView: View {
                     // Tab Selector
                     Picker("View", selection: $selectedTab) {
                         Text("Test History").tag(0)
-                        Text("Bookmarks").tag(1)
+                        Text("Rule Stats").tag(1)
+                        Text("Bookmarks").tag(2)
                     }
                     .pickerStyle(.segmented)
                     
                     // Content
                     if selectedTab == 0 {
                         testHistorySection
+                    } else if selectedTab == 1 {
+                        ruleStatsSection
                     } else {
                         bookmarksSection
                     }
@@ -146,6 +149,35 @@ struct ProgressView: View {
         }
     }
     
+    // MARK: - Rule Stats Section
+    
+    private var ruleStatsSection: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+            // Get all chapter categories from questions and sort numerically
+            let allRules = questionService.allChapterCategories.sorted { extractRuleNumber($0) < extractRuleNumber($1) }
+            
+            if allRules.isEmpty {
+                emptyStateView(
+                    icon: "chart.bar",
+                    title: "No Rules Available",
+                    message: "Question data is loading..."
+                )
+            } else {
+                ForEach(allRules, id: \.self) { rule in
+                    let stats = progressService.getChapterCategoryStats(for: rule)
+                    let totalQuestions = questionService.questionCount(for: rule)
+                    RuleStatRow(rule: rule, stats: stats, totalQuestions: totalQuestions)
+                }
+            }
+        }
+    }
+    
+    /// Extract rule number for sorting (e.g., "Rule 34" -> 34)
+    private func extractRuleNumber(_ rule: String) -> Int {
+        let digits = rule.filter { $0.isNumber }
+        return Int(digits) ?? 999
+    }
+    
     // MARK: - Bookmarks Section
     
     private var bookmarksSection: some View {
@@ -211,6 +243,113 @@ struct ProgressStatItem: View {
                 .foregroundColor(AppTheme.Colors.textSecondary)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct RuleStatRow: View {
+    let rule: String
+    let stats: CategoryStats
+    let totalQuestions: Int
+    
+    private var hasAttempted: Bool {
+        stats.answered > 0
+    }
+    
+    private var accuracyColor: Color {
+        guard hasAttempted else { return AppTheme.Colors.textTertiary }
+        switch stats.accuracy {
+        case 80...:
+            return AppTheme.Colors.correct
+        case 60..<80:
+            return AppTheme.Colors.warning
+        default:
+            return AppTheme.Colors.incorrect
+        }
+    }
+    
+    private var statusIcon: String {
+        guard hasAttempted else { return "circle" }
+        switch stats.accuracy {
+        case 80...:
+            return "checkmark.circle.fill"
+        case 60..<80:
+            return "exclamationmark.circle.fill"
+        default:
+            return "xmark.circle.fill"
+        }
+    }
+    
+    private var completionProgress: Double {
+        guard totalQuestions > 0 else { return 0 }
+        return Double(stats.answered) / Double(totalQuestions)
+    }
+    
+    var body: some View {
+        HStack(spacing: AppTheme.Spacing.md) {
+            // Status icon
+            Image(systemName: statusIcon)
+                .foregroundColor(accuracyColor)
+                .font(.title3)
+            
+            // Rule name and completion
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                Text(rule)
+                    .font(AppTheme.Typography.bodyMedium)
+                    .foregroundColor(AppTheme.Colors.textPrimary)
+                
+                Text("\(stats.answered)/\(totalQuestions) completed")
+                    .font(AppTheme.Typography.caption)
+                    .foregroundColor(AppTheme.Colors.textTertiary)
+            }
+            
+            Spacer()
+            
+            // Accuracy
+            VStack(alignment: .trailing, spacing: AppTheme.Spacing.xxs) {
+                if hasAttempted {
+                    Text(String(format: "%.0f%%", stats.accuracy))
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(accuracyColor)
+                    
+                    Text("\(stats.correct) correct")
+                        .font(AppTheme.Typography.caption)
+                        .foregroundColor(AppTheme.Colors.textTertiary)
+                } else {
+                    Text("—")
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(AppTheme.Colors.textTertiary)
+                    
+                    Text("Not started")
+                        .font(AppTheme.Typography.caption)
+                        .foregroundColor(AppTheme.Colors.textTertiary)
+                }
+            }
+            
+            // Progress bar (showing completion %)
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(AppTheme.Colors.border)
+                        .frame(height: 8)
+                    
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(hasAttempted ? accuracyColor : AppTheme.Colors.textTertiary)
+                        .frame(width: geometry.size.width * completionProgress, height: 8)
+                }
+            }
+            .frame(width: 50, height: 8)
+        }
+        .padding(AppTheme.Spacing.lg)
+        .background(
+            RoundedRectangle(cornerRadius: AppTheme.Radius.md)
+                .fill(AppTheme.Colors.cardBackground)
+                .shadow(
+                    color: AppTheme.Shadows.sm.color,
+                    radius: AppTheme.Shadows.sm.radius,
+                    x: AppTheme.Shadows.sm.x,
+                    y: AppTheme.Shadows.sm.y
+                )
+        )
     }
 }
 
@@ -347,7 +486,7 @@ struct BookmarkedQuestionDetailView: View {
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.xl) {
                     // Question Card
                     VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-                        // Category & Jurisdiction badges
+                        // Category, Jurisdiction & Chapter badges
                         HStack(spacing: AppTheme.Spacing.sm) {
                             // Category badge
                             Text(question.category.shortName)
@@ -370,6 +509,19 @@ struct BookmarkedQuestionDetailView: View {
                                     Capsule()
                                         .fill(Color(hex: question.jurisdiction.color).opacity(0.15))
                                 )
+                            
+                            // Chapter category badge (if available)
+                            if !question.chapterCategory.isEmpty {
+                                Text(question.chapterCategory)
+                                    .font(AppTheme.Typography.caption)
+                                    .foregroundColor(AppTheme.Colors.oceanBlue)
+                                    .padding(.horizontal, AppTheme.Spacing.sm)
+                                    .padding(.vertical, AppTheme.Spacing.xxs)
+                                    .background(
+                                        Capsule()
+                                            .fill(AppTheme.Colors.oceanBlue.opacity(0.15))
+                                    )
+                            }
                             
                             Spacer()
                         }
@@ -513,7 +665,8 @@ struct BookmarkedQuestionDetailView: View {
             correctAnswer: .a,
             diagramName: nil,
             category: .partC,
-            explanation: "A power-driven vessel of 50 meters or more in length must exhibit a second masthead light (after) in addition to the forward masthead light."
+            explanation: "A power-driven vessel of 50 meters or more in length must exhibit a second masthead light (after) in addition to the forward masthead light.",
+            chapterCategory: "Rule 23"
         )
     )
     .environmentObject(ProgressService.shared)
