@@ -91,14 +91,14 @@ struct QuizView: View {
                     }
                 }
             }
-            .alert("Exit Quiz?", isPresented: $showingExitConfirmation) {
-                Button("Continue Quiz", role: .cancel) {}
+            .alert("Exit Test?", isPresented: $showingExitConfirmation) {
+                Button("Continue Test", role: .cancel) {}
                 Button("Exit", role: .destructive) {
                     viewModel.stopTimer()
                     onDismiss()
                 }
             } message: {
-                Text("Your progress in this quiz will be lost.")
+                Text("Your progress in this test will be lost.")
             }
             .sheet(item: $shareItem) { item in
                 ShareSheet(activityItems: [item.url])

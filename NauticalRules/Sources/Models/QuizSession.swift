@@ -11,7 +11,6 @@ import Foundation
 
 enum QuizMode: Equatable, Hashable {
     case practice(category: QuestionCategory?)
-    case exam(questionCount: Int, timeLimit: TimeInterval?)
     case quickQuiz(questionCount: Int)
     case review
     case study(category: QuestionCategory?)
@@ -23,10 +22,8 @@ enum QuizMode: Equatable, Hashable {
                 return "Practice: \(cat.shortName)"
             }
             return "Practice Mode"
-        case .exam(let count, _):
-            return "\(count)-Question Exam"
         case .quickQuiz(let count):
-            return "\(count)-Question Quiz"
+            return "\(count)-Question Test"
         case .review:
             return "Review Mistakes"
         case .study(let category):
@@ -38,19 +35,14 @@ enum QuizMode: Equatable, Hashable {
     }
     
     var showsTimer: Bool {
-        switch self {
-        case .exam(_, let timeLimit):
-            return timeLimit != nil
-        default:
-            return false
-        }
+        return false
     }
     
     var showsImmediateFeedback: Bool {
         switch self {
         case .practice, .study:
             return true
-        case .exam, .review, .quickQuiz:
+        case .review, .quickQuiz:
             return false
         }
     }
@@ -58,7 +50,6 @@ enum QuizMode: Equatable, Hashable {
     var icon: String {
         switch self {
         case .practice: return "book.fill"
-        case .exam: return "doc.text.fill"
         case .quickQuiz: return "bolt.fill"
         case .review: return "arrow.counterclockwise"
         case .study: return "eyeglasses"

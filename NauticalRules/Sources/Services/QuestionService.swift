@@ -166,11 +166,6 @@ class QuestionService: ObservableObject {
         case .practice(let category):
             pool = category != nil ? questions(for: category!) : allQuestions
             
-        case .exam(let count, _):
-            pool = allQuestions
-            let shuffled = pool.filter { !excludeIds.contains($0.id) }.shuffled()
-            return Array(shuffled.prefix(count))
-            
         case .quickQuiz(let count):
             pool = allQuestions.shuffled()
             return Array(pool.prefix(count))

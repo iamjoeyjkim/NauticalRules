@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import StoreKit
 
 struct SettingsView: View {
     
@@ -23,7 +22,7 @@ struct SettingsView: View {
     @State private var showingShareSheet = false
     
     @EnvironmentObject var progressService: ProgressService
-    @Environment(\.requestReview) private var requestReview
+    @Environment(\.openURL) private var openURL
     
     // MARK: - Body
     
@@ -47,7 +46,7 @@ struct SettingsView: View {
                     progressService.resetProgress()
                 }
             } message: {
-                Text("This will delete your quiz history and statistics. Your bookmarks will be kept. This action cannot be undone.")
+                Text("This will delete your test history and statistics. Your bookmarks will be kept. This action cannot be undone.")
             }
             .sheet(isPresented: $showingAbout) {
                 AboutView()
@@ -75,7 +74,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "trash.fill",
                     title: "Reset Progress",
-                    subtitle: "Delete quiz history and statistics",
+                    subtitle: "Delete test history and statistics",
                     color: AppTheme.Colors.incorrect
                 )
             }
@@ -90,7 +89,7 @@ struct SettingsView: View {
         Section {
             // Rate on App Store
             Button {
-                requestReview()
+                openURL(appStoreReviewURL)
             } label: {
                 SettingsRow(
                     icon: "star.fill",
@@ -126,7 +125,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "info.circle.fill",
                     title: "About",
-                    subtitle: "Version 2.0.0",
+                    subtitle: "Version 2.1.0",
                     color: AppTheme.Colors.primaryNavy
                 )
             }
@@ -198,7 +197,7 @@ struct AboutView: View {
                             .font(AppTheme.Typography.largeTitle)
                             .foregroundColor(AppTheme.Colors.textPrimary)
                         
-                        Text("Version 2.0.0")
+                        Text("Version 2.1.0")
                             .font(AppTheme.Typography.subheadline)
                             .foregroundColor(AppTheme.Colors.textSecondary)
                     }

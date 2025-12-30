@@ -19,7 +19,7 @@ class PDFGenerator {
     
     /// Generates a PDF document with test results
     /// - Parameters:
-    ///   - mode: The quiz mode name (e.g., "Quick Quiz", "Practice")
+    ///   - mode: The test mode name (e.g., "Quick Test", "Practice")
     ///   - date: The date the test was taken
     ///   - score: The score percentage
     ///   - correctCount: Number of correct answers

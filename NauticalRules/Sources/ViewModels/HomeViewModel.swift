@@ -133,11 +133,6 @@ class HomeViewModel: ObservableObject {
         showingQuiz = true
     }
     
-    func startExam(questionCount: Int = 50, timeLimit: TimeInterval? = 3600) {
-        activeQuizMode = .exam(questionCount: questionCount, timeLimit: timeLimit)
-        showingQuiz = true
-    }
-    
     func startReview() {
         activeQuizMode = .review
         showingQuiz = true
@@ -166,8 +161,6 @@ class HomeViewModel: ObservableObject {
             // Start quiz with bookmarked questions
             activeQuizMode = .practice(category: nil)
             showingQuiz = true
-        case .examSimulation:
-            startExam()
         }
     }
     

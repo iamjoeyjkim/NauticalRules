@@ -19,9 +19,26 @@ struct HistoryResultsView: View {
     
     // MARK: - State
     
-    @State private var showingReview = false
-    @State private var showingReviewIncorrectOnly = true
+    @State private var reviewMode: ReviewMode?
     @State private var shareItem: ShareItem?
+    
+    // MARK: - Review Mode Enum
+    
+    private enum ReviewMode: Identifiable {
+        case mistakes
+        case all
+        
+        var id: String {
+            switch self {
+            case .mistakes: return "mistakes"
+            case .all: return "all"
+            }
+        }
+        
+        var showOnlyIncorrect: Bool {
+            self == .mistakes
+        }
+    }
     
     // MARK: - Computed Properties
     
@@ -85,12 +102,12 @@ struct HistoryResultsView: View {
             .background(AppTheme.Colors.background.ignoresSafeArea())
             .navigationTitle("Test Review")
             .navigationBarTitleDisplayMode(.inline)
-            .fullScreenCover(isPresented: $showingReview) {
+            .fullScreenCover(item: $reviewMode) { mode in
                 ReviewAnswersView(
                     questions: questions,
                     answers: answers,
-                    showOnlyIncorrect: showingReviewIncorrectOnly,
-                    onDismiss: { showingReview = false }
+                    showOnlyIncorrect: mode.showOnlyIncorrect,
+                    onDismiss: { reviewMode = nil }
                 )
                 .environmentObject(progressService)
             }
@@ -230,8 +247,7 @@ struct HistoryResultsView: View {
             // Review Mistakes (if any)
             if incorrectCount > 0 {
                 Button {
-                    showingReviewIncorrectOnly = true
-                    showingReview = true
+                    reviewMode = .mistakes
                 } label: {
                     HStack {
                         Image(systemName: "arrow.counterclockwise")
@@ -243,8 +259,7 @@ struct HistoryResultsView: View {
             
             // Review All Answers
             Button {
-                showingReviewIncorrectOnly = false
-                showingReview = true
+                reviewMode = .all
             } label: {
                 HStack {
                     Image(systemName: "list.bullet.clipboard")
@@ -295,7 +310,7 @@ struct HistoryResultsView: View {
 #Preview {
     let entry = QuizHistoryEntry(
         date: Date(),
-        mode: "Quick Quiz",
+        mode: "Quick Test",
         score: 80,
         timeTaken: 300,
         totalQuestions: 10,

@@ -26,7 +26,8 @@ class ProgressService: ObservableObject {
     /// Increment this when making breaking changes to UserProgress
     /// v1 = Initial release (1.x)
     /// v2 = Added chapterCategoryStats (2.0)
-    private let currentSchemaVersion = 2
+    /// v3 = Renamed "Quiz" to "Test" in history entries (2.0.1)
+    private let currentSchemaVersion = 3
     
     // MARK: - Singleton
     
@@ -66,9 +67,32 @@ class ProgressService: ObservableObject {
     /// Migrate data from older schema versions
     /// Add migration logic here for future versions
     private func migrateDataIfNeeded(from oldVersion: Int) {
-        // v1 -> v2: No data transformation needed, just new fields with defaults
-        // Future migrations can be added here:
-        // if oldVersion < 3 { migrate from v2 to v3 }
+        // Load existing data first
+        guard let data = UserDefaults.standard.data(forKey: userDefaultsKey),
+              var decoded = try? JSONDecoder().decode(UserProgress.self, from: data) else {
+            return
+        }
+        
+        var needsSave = false
+        
+        // v2 -> v3: Rename "Quiz" to "Test" in history mode names
+        if oldVersion < 3 {
+            for i in 0..<decoded.quizHistory.count {
+                let oldMode = decoded.quizHistory[i].mode
+                if oldMode.contains("Quiz") {
+                    decoded.quizHistory[i] = decoded.quizHistory[i].withUpdatedMode(
+                        oldMode.replacingOccurrences(of: "Quiz", with: "Test")
+                    )
+                    needsSave = true
+                }
+            }
+        }
+        
+        // Save migrated data
+        if needsSave {
+            self.progress = decoded
+            saveProgress()
+        }
     }
     
     func saveProgress() {
@@ -392,7 +416,6 @@ enum RecommendationAction {
     case practiceCategory(QuestionCategory)
     case reviewMistakes
     case studyBookmarked
-    case examSimulation
 }
 
 enum RecommendationPriority: Int {

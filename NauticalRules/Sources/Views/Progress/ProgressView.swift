@@ -48,7 +48,7 @@ struct ProgressView: View {
                 .padding(.vertical, AppTheme.Spacing.xl)
             }
             .background(AppTheme.Colors.background.ignoresSafeArea())
-            .navigationTitle("Progress")
+            .navigationTitle("Activity")
             .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(item: $selectedHistoryEntry) { entry in
                 HistoryResultsView(historyEntry: entry) {
@@ -134,7 +134,7 @@ struct ProgressView: View {
                 emptyStateView(
                     icon: "doc.text",
                     title: "No Tests Yet",
-                    message: "Complete a quiz to see your history here"
+                    message: "Complete a test to see your history here"
                 )
             } else {
                 ForEach(progressService.recentQuizzes) { quiz in
@@ -401,9 +401,10 @@ struct TestHistoryRow: View {
     }
     
     private var formattedDate: String {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .abbreviated
-        return formatter.localizedString(for: entry.date, relativeTo: Date())
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: entry.date)
     }
     
     private var formattedTime: String {

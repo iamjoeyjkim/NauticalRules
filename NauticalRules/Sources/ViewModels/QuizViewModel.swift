@@ -117,10 +117,6 @@ class QuizViewModel: ObservableObject {
         case .practice:
             questions = questionService.generateQuiz(mode: mode, questionCount: nil)
             
-        case .exam(let count, let limit):
-            questions = questionService.generateQuiz(mode: mode, questionCount: count)
-            timeLimit = limit
-            
         case .quickQuiz(let count):
             questions = questionService.generateQuiz(mode: mode, questionCount: count)
             

@@ -237,6 +237,20 @@ struct QuizHistoryEntry: Codable, Identifiable {
         }
         return result
     }
+    
+    // Create a copy with updated mode (for migration)
+    func withUpdatedMode(_ newMode: String) -> QuizHistoryEntry {
+        return QuizHistoryEntry(
+            date: self.date,
+            mode: newMode,
+            score: self.score,
+            timeTaken: self.timeTaken,
+            totalQuestions: self.totalQuestions,
+            correctCount: self.correctCount,
+            questionIds: self.questionIds,
+            answers: self.answers
+        )
+    }
 }
 
 // MARK: - Mastery Level

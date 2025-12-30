@@ -31,7 +31,7 @@ struct ContentView: View {
             
             ProgressView()
                 .tabItem {
-                    Label("Progress", systemImage: "chart.bar.fill")
+                    Label("Activity", systemImage: "chart.bar.fill")
                 }
                 .tag(Tab.progress)
             
