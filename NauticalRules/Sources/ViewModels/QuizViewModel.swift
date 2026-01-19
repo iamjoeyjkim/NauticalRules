@@ -111,7 +111,7 @@ class QuizViewModel: ObservableObject {
         timerValue = 0
         
         var questions: [Question] = []
-        var timeLimit: TimeInterval? = nil
+        let timeLimit: TimeInterval? = nil
         
         switch mode {
         case .practice:

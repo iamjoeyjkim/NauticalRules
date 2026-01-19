@@ -97,6 +97,14 @@ struct DiagramView: View {
             .onAppear {
                 loadSVG(named: name)
             }
+            .onChange(of: diagramName) { oldValue, newValue in
+                // Reset state and reload when diagram name changes
+                svgContent = nil
+                loadError = false
+                if let newName = newValue, !newName.isEmpty {
+                    loadSVG(named: newName)
+                }
+            }
         }
     }
     

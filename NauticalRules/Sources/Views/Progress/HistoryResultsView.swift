@@ -43,7 +43,7 @@ struct HistoryResultsView: View {
     // MARK: - Computed Properties
     
     private var questions: [Question] {
-        questionService.getQuestions(ids: Set(historyEntry.questionIds))
+        questionService.getQuestionsInOrder(ids: historyEntry.questionIds)
     }
     
     private var answers: [Int: CorrectAnswer] {
