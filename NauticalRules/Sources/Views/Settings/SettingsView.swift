@@ -125,7 +125,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "info.circle.fill",
                     title: "About",
-                    subtitle: "Version 2.1.0",
+                    subtitle: "Version 2.2",
                     color: AppTheme.Colors.primaryNavy
                 )
             }
@@ -197,7 +197,7 @@ struct AboutView: View {
                             .font(AppTheme.Typography.largeTitle)
                             .foregroundColor(AppTheme.Colors.textPrimary)
                         
-                        Text("Version 2.1.0")
+                        Text("Version 2.2")
                             .font(AppTheme.Typography.subheadline)
                             .foregroundColor(AppTheme.Colors.textSecondary)
                     }
@@ -213,7 +213,7 @@ struct AboutView: View {
                             .font(AppTheme.Typography.body)
                             .foregroundColor(AppTheme.Colors.textSecondary)
                         
-                        Text("This app contains over 1,200 practice questions covering all aspects of the Navigation Rules, including Steering and Sailing Rules, Lights and Shapes, Sound Signals, and more.")
+                        Text("This app contains 1,269 practice questions covering all aspects of the Navigation Rules, including Steering and Sailing Rules, Lights and Shapes, Sound Signals, and more.")
                             .font(AppTheme.Typography.body)
                             .foregroundColor(AppTheme.Colors.textSecondary)
                     }
